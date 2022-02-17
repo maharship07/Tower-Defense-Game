@@ -1,12 +1,13 @@
 package com.example.java;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GameScreen extends AppCompatActivity {
+public class GameScreen extends Activity {
     private int health;
 
     @SuppressLint("SetTextI18n")

@@ -9,26 +9,28 @@
         android:id="@+id/mapBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/wip2_tdgmap"
         android:contentDescription="@string/game_map"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/wip2_tdgmap" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/healthCounter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:text="@string/health"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.872" />
 
     <ImageView
         android:id="@+id/monument"
