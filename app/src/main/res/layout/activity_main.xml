@@ -10,7 +10,11 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="TOWER DEFENSE"
+=======
+        android:text="@string/title_placeholder"
+>>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -22,7 +26,11 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="START"
+=======
+        android:text="@string/start"
+>>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
@@ -35,7 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+<<<<<<< HEAD
         android:text="QUIT"
+=======
+        android:text="@string/quit"
+>>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
