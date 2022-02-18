@@ -21,21 +21,21 @@ public class ConfigScreen extends AppCompatActivity {
         Button normalButton = findViewById(R.id.normalButton);
         Button hardButton = findViewById(R.id.hardButton);
         AtomicInteger currDiff = new AtomicInteger(1);
-        easyButton.setOnClickListener(l -> {
+        easyButton.setOnClickListener(l -> { //Sets difficulty to easy
             currDiff.set(0);
             diffText.setText("Current Difficulty: Easy");
         });
-        normalButton.setOnClickListener(l -> {
+        normalButton.setOnClickListener(l -> { //Sets difficulty to normal
             currDiff.set(1);
             diffText.setText("Current Difficulty: Normal");
         });
-        hardButton.setOnClickListener(l -> {
+        hardButton.setOnClickListener(l -> { //Sets difficulty to hard
             currDiff.set(2);
             diffText.setText("Current Difficulty: Hard");
         });
 
         Button startButton = findViewById(R.id.startGame);
-        startButton.setOnClickListener(l -> {
+        startButton.setOnClickListener(l -> { //Switches to game screen and passes difficulty
             Intent i = new Intent(this, GameScreen.class);
             i.putExtra("diff", currDiff.get());
             startActivity(i);

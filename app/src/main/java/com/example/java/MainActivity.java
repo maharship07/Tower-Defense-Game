@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button startButton = findViewById(R.id.button);
         Button quitButton = findViewById(R.id.button2);
-        startButton.setOnClickListener(l -> {
+        startButton.setOnClickListener(l -> { //Switches to config screen
             Intent i = new Intent(this, ConfigScreen.class);
             startActivity(i);
             finish();
         });
-        quitButton.setOnClickListener(l -> {
+        quitButton.setOnClickListener(l -> { // Closes out of app
             MainActivity.this.finish();
             System.exit(0);
         });

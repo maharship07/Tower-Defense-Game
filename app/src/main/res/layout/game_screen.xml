@@ -34,14 +34,14 @@
 
     <ImageView
         android:id="@+id/monument"
-        android:layout_width="37dp"
-        android:layout_height="80dp"
+        android:layout_width="30dp"
+        android:layout_height="63dp"
         android:contentDescription="@string/player_monument"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/mapBackground"
-        app:layout_constraintHorizontal_bias="0.991"
-        app:layout_constraintStart_toStartOf="@+id/mapBackground"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367"
-        app:srcCompat="@drawable/monument" />
+        android:src="@drawable/monument"
+        app:layout_constraintBottom_toBottomOf="@+id/mapBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mapBackground"
+        app:layout_constraintVertical_bias="0.375" />
 </androidx.constraintlayout.widget.ConstraintLayout>
