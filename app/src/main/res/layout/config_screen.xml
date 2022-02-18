@@ -9,17 +9,10 @@
         android:id="@+id/easyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="EASY"
-        app:layout_constraintBottom_toTopOf="@+id/normalButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playerName"
-=======
         android:text="@string/easy"
         app:layout_constraintBottom_toTopOf="@+id/normalButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
+        app:layout_constraintStart_toEndOf="@+id/playerName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.742" />
 
@@ -27,39 +20,22 @@
         android:id="@+id/normalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="NORMAL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toEndOf="@+id/playerName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.446" />
-=======
         android:text="@string/normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toEndOf="@+id/playerName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41" />
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
 
     <Button
         android:id="@+id/hardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="HARD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playerName"
-=======
         android:text="@string/hard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
+        app:layout_constraintStart_toEndOf="@+id/playerName"
         app:layout_constraintTop_toBottomOf="@+id/normalButton"
         app:layout_constraintVertical_bias="0.15" />
 
@@ -68,74 +44,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-<<<<<<< HEAD
-        android:text="START GAME"
-=======
         android:text="@string/start_game"
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
-<<<<<<< HEAD
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/towerconfig" />
-
     <EditText
         android:id="@+id/playerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autoText="false"
         android:autofillHints=""
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/diffText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
-=======
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/diffText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/diffText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-<<<<<<< HEAD
-        android:hint="CURRENT DIFFICULTY"
-=======
         android:text="@string/current_difficulty_normal"
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
         app:layout_constraintBottom_toTopOf="@+id/startGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
-<<<<<<< HEAD
-
-=======
->>>>>>> bc4910b76ec3017af9da61c5153873fe2929e322
 </androidx.constraintlayout.widget.ConstraintLayout>
