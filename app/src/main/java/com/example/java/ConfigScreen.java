@@ -1,3 +1,5 @@
+package com.example.java;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

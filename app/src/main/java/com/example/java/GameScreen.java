@@ -1,2 +1,4 @@
-package com.example.java;public class GameScreen {
+package com.example.java;
+
+public class GameScreen {
 }
