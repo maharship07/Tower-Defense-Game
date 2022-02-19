@@ -39,12 +39,10 @@ public class ConfigScreen extends AppCompatActivity {
 
         Button startButton = findViewById(R.id.startGame);
         startButton.setOnClickListener(l -> { //Switches to game screen and passes difficulty
-            if (name != null && !name.trim().isEmpty() && diffText != null) {
-                Intent i = new Intent(this, GameScreen.class);
-                i.putExtra("diff", currDiff.get());
-                startActivity(i);
-                finish();
-            }
+            Intent i = new Intent(this, GameScreen.class);
+            i.putExtra("diff", currDiff.get());
+            startActivity(i);
+            finish();
         });
     }
 }
