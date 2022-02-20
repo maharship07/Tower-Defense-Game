@@ -48,13 +48,13 @@ public class GameScreen extends Activity {
         int m = extras.getInt("money"); // Pulls money from config screen
         switch (m) { //initializes game parameters based on money parameter
             case 0:
-                money = 50; //Easy money
+                money = 200; //Easy money
                 break;
             case 1:
-                money = 100; //Normal money
+                money = 150; //Normal money
                 break;
             case 2:
-                money = 150; //Hard money
+                money = 100; //Hard money
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + m);

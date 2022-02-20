@@ -31,19 +31,19 @@ public class ConfigScreen extends AppCompatActivity {
         easyButton.setOnClickListener(l -> { //Sets difficulty to easy
             currDiff.set(0);
             currMoney.set(0);
-            moneyText.setText("Starting Money: 50");
+            moneyText.setText("Starting Money: 200");
             diffText.setText("Current Difficulty: Easy");
         });
         normalButton.setOnClickListener(l -> { //Sets difficulty to normal
             currDiff.set(1);
             currMoney.set(1);
-            moneyText.setText("Starting Money: 100");
+            moneyText.setText("Starting Money: 150");
             diffText.setText("Current Difficulty: Normal");
         });
         hardButton.setOnClickListener(l -> { //Sets difficulty to hard
             currDiff.set(2);
             currMoney.set(2);
-            moneyText.setText("Starting Money: 150");
+            moneyText.setText("Starting Money: 100");
             diffText.setText("Current Difficulty: Hard");
         });
 
