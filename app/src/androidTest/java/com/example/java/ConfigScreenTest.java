@@ -1,6 +1,7 @@
 package com.example.java;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -8,10 +9,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import android.app.Activity;
 import android.content.Context;
-
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 
 //import org.junit.Before;
 import org.junit.Rule;
@@ -30,30 +30,37 @@ public class ConfigScreenTest  {
     private Activity mActivity;
 
     @Rule
-    public ActivityScenarioRule<ConfigScreen> activityRule =
-            new ActivityScenarioRule<ConfigScreen>(ConfigScreen.class);
+    public ActivityTestRule<ConfigScreen> activityRule =
+            new ActivityTestRule(ConfigScreen.class);
 
     @Test
     public void testNormalName() {
-        onView(withId(R.id.button)).perform(click());
         onView(withId(R.id.playerName)).perform(typeText("Yay"));
+        onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
+
         onView(withId(R.id.normalButton)).perform(click());
+        onView(withId(R.id.startGame)).perform(click());
         onView(withId(R.id.healthCounter)).check(matches(isDisplayed()));
+
     }
 
     @Test
     public void testBlankName() {
-        onView(withId(R.id.button)).perform(click());
         onView(withId(R.id.playerName)).perform(typeText(""));
+        onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
+
         onView(withId(R.id.normalButton)).perform(click());
+        onView(withId(R.id.startGame)).perform(click());
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
     }
 
     @Test
     public void testWhiteSpaceName() {
-        onView(withId(R.id.button)).perform(click());
         onView(withId(R.id.playerName)).perform(typeText("   "));
+        onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
+
         onView(withId(R.id.normalButton)).perform(click());
+        onView(withId(R.id.startGame)).perform(click());
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
     }
 
