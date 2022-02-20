@@ -59,4 +59,5 @@ public class ConfigScreen extends AppCompatActivity {
 
         });
     }
+
 }
