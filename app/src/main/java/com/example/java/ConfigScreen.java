@@ -2,6 +2,7 @@ package com.example.java;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,22 +19,27 @@ public class ConfigScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_screen);
         TextView diffText = findViewById(R.id.diffText);
+        TextView moneyText = findViewById(R.id.starting_money);
         Button easyButton = findViewById(R.id.easyButton);
         Button normalButton = findViewById(R.id.normalButton);
         Button hardButton = findViewById(R.id.hardButton);
         EditText playerName = findViewById(R.id.playerName);
         String name = playerName.getText().toString();
+        diffText.setTextColor(Color.parseColor("#fcca03"));
         AtomicInteger currDiff = new AtomicInteger(1);
         easyButton.setOnClickListener(l -> { //Sets difficulty to easy
             currDiff.set(0);
+            moneyText.setText("Starting Money: 150");
             diffText.setText("Current Difficulty: Easy");
         });
         normalButton.setOnClickListener(l -> { //Sets difficulty to normal
             currDiff.set(1);
+            moneyText.setText("Starting Money: 100");
             diffText.setText("Current Difficulty: Normal");
         });
         hardButton.setOnClickListener(l -> { //Sets difficulty to hard
             currDiff.set(2);
+            moneyText.setText("Starting Money: 50");
             diffText.setText("Current Difficulty: Hard");
         });
 
