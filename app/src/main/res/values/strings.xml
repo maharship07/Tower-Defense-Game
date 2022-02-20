@@ -6,7 +6,7 @@
     <string name="start_game">Start Game</string>
     <string name="current_difficulty_normal">Current Difficulty: Normal</string>
     <string name="game_map">Game Map</string>
-    <string name="health">Health</string>
+    <string name="health">Health:</string>
     <string name="player_monument">Player Monument</string>
     <string name="starting_money">Starting Money: 100</string>
     <string name="money">Money:</string>

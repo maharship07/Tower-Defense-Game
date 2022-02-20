@@ -26,7 +26,7 @@ public class GameScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
-        TextView moneyCounter = findViewById(R.id.money_counter); //Initialized starting money
+        TextView moneyCounter = findViewById(R.id.moneyCounter); //Initialized starting money
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
 
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
@@ -48,13 +48,13 @@ public class GameScreen extends Activity {
         int m = extras.getInt("money"); // Pulls money from config screen
         switch (m) { //initializes game parameters based on money parameter
             case 0:
-                money = 150;
+                money = 50; //Easy money
                 break;
             case 1:
-                money = 100;
+                money = 100; //Normal money
                 break;
             case 2:
-                money = 50;
+                money = 150; //Hard money
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + m);
