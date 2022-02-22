@@ -24,7 +24,7 @@ public class ConfigScreen extends AppCompatActivity {
         Button hardButton = findViewById(R.id.hardButton);
         EditText playerName = findViewById(R.id.playerName);
         String name = playerName.getText().toString();
-        diffText.setTextColor(Color.parseColor("#fcca03"));
+        TextView errorText = findViewById(R.id.errorText);
         AtomicInteger currDiff = new AtomicInteger(1);
         easyButton.setOnClickListener(l -> { //Sets difficulty to easy
             currDiff.set(0);
@@ -38,15 +38,20 @@ public class ConfigScreen extends AppCompatActivity {
             currDiff.set(2);
             diffText.setText("Current Difficulty: Hard");
         });
-
-        //have something that controls behaviour of not accepted field for name
-
         Button startButton = findViewById(R.id.startGame);
         startButton.setOnClickListener(l -> { //Switches to game screen and passes difficulty
-            Intent i = new Intent(this, GameScreen.class);
-            i.putExtra("diff", currDiff.get());
-            startActivity(i);
-            finish();
+            if (playerName.getText() == null) {
+                errorText.setTextColor(Color.RED);
+                errorText.setText("Player name cannot be null");
+            } else if (playerName.getText().length() == 0) {
+                errorText.setTextColor(Color.RED);
+                errorText.setText("Player name cannot be empty");
+            } else {
+                Intent i = new Intent(this, GameScreen.class);
+                i.putExtra("diff", currDiff.get());
+                startActivity(i);
+                finish();
+            }
         });
     }
 }
