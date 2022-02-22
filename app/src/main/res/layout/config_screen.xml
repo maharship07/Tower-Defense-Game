@@ -89,16 +89,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/starting_money"
-        android:layout_width="134dp"
-        android:layout_height="20dp"
-        android:text="@string/starting_money"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diffText" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
