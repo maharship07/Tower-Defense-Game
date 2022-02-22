@@ -4,9 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ian Westcott/Documents/GitHub/Tower-Defense-Game/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/config_screen.xml" value="0.33" />
         <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/game_screen.xml" value="0.75" />
+=======
+<<<<<<< Updated upstream
+        <entry key="..\:/Users/Ian Westcott/Documents/GitHub/Tower-Defense-Game/app/src/main/res/layout/config_screen.xml" value="0.22826086956521738" />
+<<<<<<< Updated upstream
+        <entry key="..\:/Users/Ian Westcott/Documents/GitHub/Tower-Defense-Game/app/src/main/res/layout/game_screen.xml" value="0.536" />
+=======
+=======
+>>>>>>> Stashed changes
+        <entry key="..\:/Users/Ian Westcott/Documents/GitHub/Tower-Defense-Game/app/src/main/res/layout/game_screen.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/config_screen.xml" value="0.33" />
+        <entry key="..\:/Users/patel/Desktop/CS 2340/Github/Tower-Defense-Game/app/src/main/res/layout/game_screen.xml" value="0.75" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>

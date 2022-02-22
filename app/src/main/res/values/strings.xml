@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Java</string>
+    <string name="app_name">Tower Defense</string>
     <string name="normal">Normal</string>
     <string name="hard">Hard</string>
     <string name="easy">Easy</string>
@@ -8,6 +8,7 @@
     <string name="game_map">Game Map</string>
     <string name="health">Health:</string>
     <string name="player_monument">Player Monument</string>
-    <string name="starting_money">Starting Money: 100</string>
+    <string name="starting_money">Starting Money: 150</string>
     <string name="money">Money:</string>
+    <string name="error_text">Enter Player Name</string>
 </resources>
