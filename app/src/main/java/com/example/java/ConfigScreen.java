@@ -2,7 +2,6 @@ package com.example.java;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,11 +40,11 @@ public class ConfigScreen extends AppCompatActivity {
         Button startButton = findViewById(R.id.startGame);
         startButton.setOnClickListener(l -> { //Switches to game screen and passes difficulty
             if (playerName.getText() == null) {
-                errorText.setTextColor(Color.RED);
-                errorText.setText("Player name cannot be null");
+                errorText.setText("Name can't be null");
             } else if (playerName.getText().length() == 0) {
-                errorText.setTextColor(Color.RED);
-                errorText.setText("Player name cannot be empty");
+                errorText.setText("Name can't be empty");
+            } else if (playerName.getText().toString().trim().length() == 0) {
+                errorText.setText("Name can't be only whitespace");
             } else {
                 Intent i = new Intent(this, GameScreen.class);
                 i.putExtra("diff", currDiff.get());
