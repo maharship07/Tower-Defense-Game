@@ -35,11 +35,13 @@ public class GameScreen extends Activity {
         setContentView(R.layout.game_screen);
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
+        TextView tower1cost = findViewById(R.id.Tower1Cost);
+        TextView tower2cost = findViewById(R.id.Tower2Cost);
+        TextView tower3cost = findViewById(R.id.Tower3Cost);
         ImageButton tower1button = findViewById(R.id.tower1button);
         ImageButton tower2button = findViewById(R.id.tower2button);
         ImageButton tower3button = findViewById(R.id.tower3button);
-        View towermap = findViewById(R.id.towermap);
-        TextView test = findViewById(R.id.test);
+        GameCanvas towermap = findViewById(R.id.gamecanvas);
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
         switch (diff) { //initializes game parameters based on difficulty parameter
@@ -58,6 +60,9 @@ public class GameScreen extends Activity {
             default:
                 throw new IllegalStateException("Unexpected value: " + diff);
         }
+        tower1cost.setText("Price: $" + Tower1.initCost(diff));
+        tower2cost.setText("Price: $" + Tower2.initCost(diff));
+        tower3cost.setText("Price: $" + Tower3.initCost(diff));
         updateHealth(healthCounter); //sets health display to starting health
         updateMoney(moneyCounter);
         tower1button.setOnClickListener(l -> {
@@ -73,13 +78,20 @@ public class GameScreen extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     int x = (int) event.getX();
+                    x = x - (x % 150);
                     int y = (int) event.getY();
+                    y = y - (y % 150);
+                    for (int i = 0; i < towerArray.size(); i++) {
+                        if (x == towerArray.get(i).getX_loc() && y == towerArray.get(i).getY_loc()){
+                            currentTower = 0;
+                        }
+                    }
                     switch (currentTower) {
                         case 1:
                             if (money >= Tower1.initCost(diff)) {
                                 money = money - Tower1.initCost(diff);
                                 updateMoney(moneyCounter);
-                                test.setText("X:" + x + "Y:" + y);
+                                towermap.addTower(x, y, 1);
                                 Tower1 newTower = new Tower1(x, y);
                                 towerArray.add(newTower);
                             }
@@ -89,6 +101,7 @@ public class GameScreen extends Activity {
                             if (money >= Tower2.initCost(diff)) {
                                 money = money - Tower2.initCost(diff);
                                 updateMoney(moneyCounter);
+                                towermap.addTower(x, y, 2);
                                 Tower2 newTower = new Tower2(x, y);
                                 towerArray.add(newTower);
                             }
@@ -98,6 +111,7 @@ public class GameScreen extends Activity {
                             if (money >= Tower3.initCost(diff)) {
                                 money = money - Tower3.initCost(diff);
                                 updateMoney(moneyCounter);
+                                towermap.addTower(x, y, 3);
                                 Tower3 newTower = new Tower3(x, y);
                                 towerArray.add(newTower);
                             }

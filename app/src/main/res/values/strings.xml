@@ -13,4 +13,7 @@
     <string name="error_text">Enter Player Name</string>
     <string name="test">test</string>
     <string name="xy_values_go_here">XY VALUES GO HERE</string>
+    <string name="price1">Price: $</string>
+    <string name="price2">Price: $</string>
+    <string name="price3">Price: $</string>
 </resources>

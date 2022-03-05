@@ -3,9 +3,9 @@ package com.example.java;
 public class Tower2 implements TowerInterface{
     private int damage = 50;
     private int range = 100;
-    private float x_loc;
-    private float y_loc;
-    public Tower2(float x, float y) {
+    private int x_loc;
+    private int y_loc;
+    public Tower2(int x, int y) {
         x_loc = x;
         y_loc = y;
     }
@@ -45,7 +45,7 @@ public class Tower2 implements TowerInterface{
         this.range = range;
     }
 
-    public float getX_loc() {
+    public int getX_loc() {
         return x_loc;
     }
 
@@ -53,7 +53,7 @@ public class Tower2 implements TowerInterface{
         this.x_loc = x_loc;
     }
 
-    public float getY_loc() {
+    public int getY_loc() {
         return y_loc;
     }
 
