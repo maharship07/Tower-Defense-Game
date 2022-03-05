@@ -15,8 +15,8 @@ import java.util.List;
 public class GameScreen extends Activity {
     private int health; //Player health
     private int money;
-    private List<TowerInterface> towerArray = new ArrayList<>();
-    private int currentTower = 0;
+    private List<TowerInterface> towerArray = new ArrayList<>(); //Arraylist of player towers
+    private int currentTower = 0; //Number of tower player wishes to place
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -41,7 +41,7 @@ public class GameScreen extends Activity {
         ImageButton tower1button = findViewById(R.id.tower1button);
         ImageButton tower2button = findViewById(R.id.tower2button);
         ImageButton tower3button = findViewById(R.id.tower3button);
-        GameCanvas towermap = findViewById(R.id.gamecanvas);
+        GameCanvas towermap = findViewById(R.id.gamecanvas); //Draws towers and processes clicks
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
         switch (diff) { //initializes game parameters based on difficulty parameter
@@ -66,27 +66,27 @@ public class GameScreen extends Activity {
         updateHealth(healthCounter); //sets health display to starting health
         updateMoney(moneyCounter);
         tower1button.setOnClickListener(l -> {
-            currentTower = 1;
+            currentTower = 1; //Tower 1 now placeable
         });
         tower2button.setOnClickListener(l -> {
-            currentTower = 2;
+            currentTower = 2; //Tower 2 now placeable
         });
         tower3button.setOnClickListener(l -> {
-            currentTower = 3;
+            currentTower = 3; //Tower 3 now placeable
         });
         towermap.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    int x = (int) event.getX();
-                    x = x - (x % 150);
-                    int y = (int) event.getY();
-                    y = y - (y % 150);
+                if (event.getAction() == MotionEvent.ACTION_DOWN) { //When play area is clicked
+                    int x = (int) event.getX(); //Get x value of click
+                    x = x - (x % 150);  // Move x value to top-left corner of nearest box
+                    int y = (int) event.getY(); //Get y value of click
+                    y = y - (y % 150); // Move y value to top-left corner of nearest box
                     for (int i = 0; i < towerArray.size(); i++) {
                         if (x == towerArray.get(i).getX_loc() && y == towerArray.get(i).getY_loc()){
-                            currentTower = 0;
+                            currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-                    switch (currentTower) {
+                    switch (currentTower) { //View tower selected, check money, add tower if enough
                         case 1:
                             if (money >= Tower1.initCost(diff)) {
                                 money = money - Tower1.initCost(diff);
