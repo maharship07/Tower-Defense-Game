@@ -3,11 +3,11 @@ package com.example.java;
 public class Tower3 implements TowerInterface {
     private int damage = 20;
     private int range = 500;
-    private int x_loc;
-    private int y_loc;
+    private int xLoc;
+    private int yLoc;
     public Tower3(int x, int y) {
-        x_loc = x;
-        y_loc = y;
+        xLoc = x;
+        yLoc = y;
     }
 
     @Override
@@ -15,16 +15,16 @@ public class Tower3 implements TowerInterface {
 
     }
 
-    public static int initCost(int difficulty){
+    public static int initCost(int difficulty) {
         switch (difficulty) {
-            case 0:
-                return 100;
-            case 1:
-                return 200;
-            case 2:
-                return 400;
-            default:
-                break;
+        case 0:
+            return 100;
+        case 1:
+            return 200;
+        case 2:
+            return 400;
+        default:
+            break;
         }
         return 0;
     }
@@ -45,19 +45,19 @@ public class Tower3 implements TowerInterface {
         this.range = range;
     }
 
-    public int getX_loc() {
-        return x_loc;
+    public int getxLoc() {
+        return xLoc;
     }
 
-    public void setX_loc(int x_loc) {
-        this.x_loc = x_loc;
+    public void setxLoc(int xLoc) {
+        this.xLoc = xLoc;
     }
 
-    public int getY_loc() {
-        return y_loc;
+    public int getyLoc() {
+        return yLoc;
     }
 
-    public void setY_loc(int y_loc) {
-        this.y_loc = y_loc;
+    public void setyLoc(int yLoc) {
+        this.yLoc = yLoc;
     }
 }

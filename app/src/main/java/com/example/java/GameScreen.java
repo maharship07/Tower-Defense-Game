@@ -45,20 +45,20 @@ public class GameScreen extends Activity {
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
         switch (diff) { //initializes game parameters based on difficulty parameter
-            case 0:
-                health = 150; //Easy health = 150
-                money = 200;
-                break;
-            case 1:
-                health = 100; //Normal health = 100
-                money = 150;
-                break;
-            case 2:
-                health = 50; //Hard health = 50
-                money = 100;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + diff);
+        case 0:
+            health = 150; //Easy health = 150
+            money = 200;
+            break;
+        case 1:
+            health = 100; //Normal health = 100
+            money = 150;
+            break;
+        case 2:
+            health = 50; //Hard health = 50
+            money = 100;
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + diff);
         }
         tower1cost.setText("Price: $" + Tower1.initCost(diff));
         tower2cost.setText("Price: $" + Tower2.initCost(diff));
@@ -82,7 +82,8 @@ public class GameScreen extends Activity {
                     int y = (int) event.getY(); //Get y value of click
                     y = y - (y % 150); // Move y value to top-left corner of nearest box
                     for (int i = 0; i < towerArray.size(); i++) {
-                        if (x == towerArray.get(i).getX_loc() && y == towerArray.get(i).getY_loc()){
+                        if (x == towerArray.get(i).getxLoc()
+                                && y == towerArray.get(i).getyLoc()) {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }

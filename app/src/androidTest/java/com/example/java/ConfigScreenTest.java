@@ -70,8 +70,10 @@ public class ConfigScreenTest  {
 
         onView(withId(R.id.easyButton)).perform(click());
         onView(withId(R.id.startGame)).perform(click());
-        onView(withId(R.id.healthCounter)).check(matches(withText(containsString("Health: 150"))));
-        onView(withId(R.id.moneyCounter)).check(matches(withText(containsString("Money: 200"))));
+        onView(withId(R.id.healthCounter)).check(matches(withText(
+                containsString("Health: 150"))));
+        onView(withId(R.id.moneyCounter)).check(matches(withText(
+                containsString("Money: 200"))));
     }
 
 
@@ -82,8 +84,10 @@ public class ConfigScreenTest  {
 
         onView(withId(R.id.normalButton)).perform(click());
         onView(withId(R.id.startGame)).perform(click());
-        onView(withId(R.id.healthCounter)).check(matches(withText(containsString("Health: 100"))));
-        onView(withId(R.id.moneyCounter)).check(matches(withText(containsString("Money: 150"))));
+        onView(withId(R.id.healthCounter)).check(matches(withText(
+                containsString("Health: 100"))));
+        onView(withId(R.id.moneyCounter)).check(matches(withText(
+                containsString("Money: 150"))));
     }
 
     @Test
@@ -93,8 +97,23 @@ public class ConfigScreenTest  {
 
         onView(withId(R.id.hardButton)).perform(click());
         onView(withId(R.id.startGame)).perform(click());
-        onView(withId(R.id.healthCounter)).check(matches(withText(containsString("Health: 50"))));
-        onView(withId(R.id.moneyCounter)).check(matches(withText(containsString("Money: 100"))));
+        onView(withId(R.id.healthCounter)).check(matches(withText(
+                containsString("Health: 50"))));
+        onView(withId(R.id.moneyCounter)).check(matches(withText(
+                containsString("Money: 100"))));
+    }
+
+    @Test
+    public void testDifficultyDisplay() {
+        onView(withId(R.id.easyButton)).perform(click());
+        onView(withId(R.id.diffText)).check(matches(withText(
+                containsString("Current Difficulty: Easy"))));
+        onView(withId(R.id.normalButton)).perform(click());
+        onView(withId(R.id.diffText)).check(matches(withText(
+                containsString("Current Difficulty: Normal"))));
+        onView(withId(R.id.hardButton)).perform(click());
+        onView(withId(R.id.diffText)).check(matches(withText(
+                containsString("Current Difficulty: Hard"))));
     }
 
 
