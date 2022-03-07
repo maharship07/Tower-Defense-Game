@@ -16,16 +16,18 @@ import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.GeneralClickAction;
 import androidx.test.espresso.action.Press;
 import androidx.test.espresso.action.Tap;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
 //import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.matchers.JUnitMatchers.containsString;
 
 
-
+@RunWith(AndroidJUnit4.class)
 public class GameScreenTest {
     @Rule
     public ActivityTestRule<ConfigScreen> activityRule =
@@ -56,9 +58,11 @@ public class GameScreenTest {
 
         onView(withId(R.id.hardButton)).perform(click());
         onView(withId(R.id.startGame)).perform(click());
+        onView(withId(R.id.tower1button)).perform(click());
+        onView(withId(R.id.gamecanvas)).perform(clickXY(100, 100));
         onView(withId(R.id.tower3button)).perform(click());
         onView(withId(R.id.gamecanvas)).perform(clickXY(200, 200));
         onView(withId(R.id.moneyCounter)).check(matches(withText(
-                containsString("Money: 100"))));
+                containsString("Money: 0"))));
     }
 }
