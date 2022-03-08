@@ -32,7 +32,7 @@ public class ConfigScreenTest  {
     public ActivityTestRule<ConfigScreen> activityRule =
             new ActivityTestRule(ConfigScreen.class);
 
-    @Test
+    @Test   // Testing Milestone 2
     public void testNormalName() {
         onView(withId(R.id.playerName)).perform(typeText("Yay"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -43,7 +43,7 @@ public class ConfigScreenTest  {
 
     }
 
-    @Test
+    @Test  // Testing Milestone 2  (Manu)
     public void testBlankName() {
         onView(withId(R.id.playerName)).perform(typeText(""));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -53,7 +53,7 @@ public class ConfigScreenTest  {
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
     }
 
-    @Test
+    @Test  // Testing Milestone 2 (Manu)
     public void testWhiteSpaceName() {
         onView(withId(R.id.playerName)).perform(typeText("   "));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -63,7 +63,7 @@ public class ConfigScreenTest  {
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
     }
 
-    @Test
+    @Test  // Testing Milestone 2
     public void testEasyConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -77,7 +77,7 @@ public class ConfigScreenTest  {
     }
 
 
-    @Test
+    @Test  // Testing Milestone 2
     public void testNormalConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -90,7 +90,7 @@ public class ConfigScreenTest  {
                 containsString("Money: 150"))));
     }
 
-    @Test
+    @Test  // Testing Milestone 2
     public void testHardConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -103,7 +103,7 @@ public class ConfigScreenTest  {
                 containsString("Money: 100"))));
     }
 
-    @Test
+    @Test  // Testing Milestone 2
     public void testDifficultyDisplay() {
         onView(withId(R.id.easyButton)).perform(click());
         onView(withId(R.id.diffText)).check(matches(withText(
@@ -117,7 +117,7 @@ public class ConfigScreenTest  {
     }
 
 
-    @Test
+    @Test  // Testing Milestone 2
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
