@@ -87,41 +87,67 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-                    switch (currentTower) { //View tower selected, check money, add tower if enough
-                        case 1:
-                            if (money >= Tower1.initCost(diff)) {
-                                money = money - Tower1.initCost(diff);
-                                updateMoney(moneyCounter);
-                                towermap.addTower(x, y, 1);
-                                Tower1 newTower = new Tower1(x, y);
-                                towerArray.add(newTower);
-                            }
-                            currentTower = 0;
-                            break;
-                        case 2:
-                            if (money >= Tower2.initCost(diff)) {
-                                money = money - Tower2.initCost(diff);
-                                updateMoney(moneyCounter);
-                                towermap.addTower(x, y, 2);
-                                Tower2 newTower = new Tower2(x, y);
-                                towerArray.add(newTower);
-                            }
-                            currentTower = 0;
-                            break;
-                        case 3:
-                            if (money >= Tower3.initCost(diff)) {
-                                money = money - Tower3.initCost(diff);
-                                updateMoney(moneyCounter);
-                                towermap.addTower(x, y, 3);
-                                Tower3 newTower = new Tower3(x, y);
-                                towerArray.add(newTower);
-                            }
-                            currentTower = 0;
-                            break;
-                        default:
-                            break;
+                    int pathCheck = 0;
+                    if (y == 300 && (x == 0 || x == 150 || x == 300 || x == 450)) {
+                        pathCheck = 1;
+                    } else if (x == 450 && (y == 450 || y == 600)) {
+                        pathCheck = 1;
+                    } else if (y == 600 && (x == 600 || x == 750 || x == 900)) {
+                        pathCheck = 1;
+                    } else if (x == 900 && (y == 450 || y == 300 || y == 150)) {
+                        pathCheck = 1;
+                    } else if (y == 150 && (x == 1050 || x == 1200 || x == 1350)) {
+                        pathCheck = 1;
+                    } else if (x == 1350 && (y == 300 || y == 450 || y == 600)) {
+                        pathCheck = 1;
+                    } else if (y == 600 && (x == 1500 || x == 1650)) {
+                        pathCheck = 1;
+                    } else if (x == 1650 && (y == 450 || y == 300 || y == 150)) {
+                        pathCheck = 1;
+                    } else if (y == 150 && (x == 1800 || x == 1950)) {
+                        pathCheck = 1;
+                    } else if (x == 1950 && (y == 300 || y == 450)) {
+                        pathCheck = 1;
+                    } else if (x == 2100 && y == 450) {
+                        pathCheck = 1;
                     }
 
+                    if (pathCheck == 0) {
+                        switch (currentTower) { //View tower selected, check money, add tower if enough
+                            case 1:
+                                if (money >= Tower1.initCost(diff)) {
+                                    money = money - Tower1.initCost(diff);
+                                    updateMoney(moneyCounter);
+                                    towermap.addTower(x, y, 1);
+                                    Tower1 newTower = new Tower1(x, y);
+                                    towerArray.add(newTower);
+                                }
+                                currentTower = 0;
+                                break;
+                            case 2:
+                                if (money >= Tower2.initCost(diff)) {
+                                    money = money - Tower2.initCost(diff);
+                                    updateMoney(moneyCounter);
+                                    towermap.addTower(x, y, 2);
+                                    Tower2 newTower = new Tower2(x, y);
+                                    towerArray.add(newTower);
+                                }
+                                currentTower = 0;
+                                break;
+                            case 3:
+                                if (money >= Tower3.initCost(diff)) {
+                                    money = money - Tower3.initCost(diff);
+                                    updateMoney(moneyCounter);
+                                    towermap.addTower(x, y, 3);
+                                    Tower3 newTower = new Tower3(x, y);
+                                    towerArray.add(newTower);
+                                }
+                                currentTower = 0;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
                 return true;
             }
