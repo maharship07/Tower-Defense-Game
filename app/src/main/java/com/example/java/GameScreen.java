@@ -2,41 +2,68 @@ package com.example.java;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameScreen extends Activity {
     private int health; //Player health
+    private int money;
+    private List<TowerInterface> towerArray = new ArrayList<>(); //Arraylist of player towers
+    private int currentTower = 0; //Number of tower player wishes to place
 
     @SuppressLint("SetTextI18n")
-    //Takes in health text field and sets it to current health value
     private void updateHealth(TextView healthCounter) {
         healthCounter.setText("Health: " + health);
     }
 
+    @SuppressLint("SetTextI18n")
+    private void updateMoney(TextView moneyCounter) {
+        moneyCounter.setText("Money: " + money);
+    }
+
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
+        TextView moneyCounter = findViewById(R.id.moneyCounter);
+        TextView tower1cost = findViewById(R.id.Tower1Cost);
+        TextView tower2cost = findViewById(R.id.Tower2Cost);
+        TextView tower3cost = findViewById(R.id.Tower3Cost);
+        ImageButton tower1button = findViewById(R.id.tower1button);
+        ImageButton tower2button = findViewById(R.id.tower2button);
+        ImageButton tower3button = findViewById(R.id.tower3button);
+        GameCanvas towermap = findViewById(R.id.gamecanvas); //Draws towers and processes clicks
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
         switch (diff) { //initializes game parameters based on difficulty parameter
-            case 0:
-                health = 150; //Easy health = 150
-                break;
-            case 1:
-                health = 100; //Normal health = 100
-                break;
-            case 2:
-                health = 50; //Hard health = 50
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + diff);
+        case 0:
+            health = 150; //Easy health = 150
+            money = 200;
+            break;
+        case 1:
+            health = 100; //Normal health = 100
+            money = 150;
+            break;
+        case 2:
+            health = 50; //Hard health = 50
+            money = 100;
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + diff);
         }
+        tower1cost.setText("Price: $" + Tower1.initCost(diff));
+        tower2cost.setText("Price: $" + Tower2.initCost(diff));
+        tower3cost.setText("Price: $" + Tower3.initCost(diff));
         updateHealth(healthCounter); //sets health display to starting health
-<<<<<<< Updated upstream
-=======
         updateMoney(moneyCounter);
         tower1button.setOnClickListener(l -> {
             currentTower = 1; //Tower 1 now placeable
@@ -60,75 +87,44 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-                    System.out.println(x);
-                    System.out.println(y);
-                    int pathCheck = 0;
-                    if (y == 300 && (x == 0 || x == 150 || x == 300 || x == 450)) {
-                        pathCheck = 1;
-                    } else if (x == 450 && (y == 450 || y == 600)) {
-                        pathCheck = 1;
-                    } else if (y == 600 && (x == 600 || x == 750 || x == 900)) {
-                        pathCheck = 1;
-                    } else if (x == 900 && (y == 450 || y == 300 || y == 150)) {
-                        pathCheck = 1;
-                    } else if (y == 150 && (x == 1050 || x == 1200 || x == 1350)) {
-                        pathCheck = 1;
-                    } else if (x == 1350 && (y == 300 || y == 450 || y == 600)) {
-                        pathCheck = 1;
-                    } else if (y == 600 && (x == 1500 || x == 1650)) {
-                        pathCheck = 1;
-                    } else if (x == 1650 && (y == 450 || y == 300 || y == 150)) {
-                        pathCheck = 1;
-                    } else if (y == 150 && (x == 1800 || x == 1950)) {
-                        pathCheck = 1;
-                    } else if (x == 1950 && (y == 300 || y == 450)) {
-                        pathCheck = 1;
-                    } else if (x == 2100 && y == 450) {
-                        pathCheck = 1;
+                    switch (currentTower) { //View tower selected, check money, add tower if enough
+                        case 1:
+                            if (money >= Tower1.initCost(diff)) {
+                                money = money - Tower1.initCost(diff);
+                                updateMoney(moneyCounter);
+                                towermap.addTower(x, y, 1);
+                                Tower1 newTower = new Tower1(x, y);
+                                towerArray.add(newTower);
+                            }
+                            currentTower = 0;
+                            break;
+                        case 2:
+                            if (money >= Tower2.initCost(diff)) {
+                                money = money - Tower2.initCost(diff);
+                                updateMoney(moneyCounter);
+                                towermap.addTower(x, y, 2);
+                                Tower2 newTower = new Tower2(x, y);
+                                towerArray.add(newTower);
+                            }
+                            currentTower = 0;
+                            break;
+                        case 3:
+                            if (money >= Tower3.initCost(diff)) {
+                                money = money - Tower3.initCost(diff);
+                                updateMoney(moneyCounter);
+                                towermap.addTower(x, y, 3);
+                                Tower3 newTower = new Tower3(x, y);
+                                towerArray.add(newTower);
+                            }
+                            currentTower = 0;
+                            break;
+                        default:
+                            break;
                     }
-                    System.out.println(pathCheck);
-                    if (pathCheck == 0) {
-                        switch (currentTower) { //View tower selected, check money, add tower if enough
-                            case 1:
-                                if (money >= Tower1.initCost(diff)) {
-                                    System.out.println("x" + x);
-                                    System.out.println("y" + y);
-                                    money = money - Tower1.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 1);
-                                    Tower1 newTower = new Tower1(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 2:
-                                if (money >= Tower2.initCost(diff)) {
-                                    money = money - Tower2.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 2);
-                                    Tower2 newTower = new Tower2(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 3:
-                                if (money >= Tower3.initCost(diff)) {
-                                    money = money - Tower3.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 3);
-                                    Tower3 newTower = new Tower3(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+
                 }
                 return true;
             }
         });
->>>>>>> Stashed changes
     }
 }
