@@ -37,7 +37,6 @@ public class GameCanvas extends View {
         default:
             break;
         }
-        invalidate();
     }
     //Add new tower to drawing array
     public void addTower(int x, int y, int tower) {
