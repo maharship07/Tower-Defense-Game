@@ -113,7 +113,8 @@ public class GameScreen extends Activity {
                     }
 
                     if (pathCheck == 0) {
-                        switch (currentTower) { //View tower selected, check money, add tower if enough
+                        switch (currentTower) {
+                            //View tower selected, check money, add tower if enough
                             case 1:
                                 if (money >= Tower1.initCost(diff)) {
                                     money = money - Tower1.initCost(diff);
