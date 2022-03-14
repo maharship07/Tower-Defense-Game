@@ -110,7 +110,7 @@ public class GameScreen extends Activity {
                         pathCheck = 1;
                     } else if (x == 2100 && y == 450) {
                         pathCheck = 1;
-                    }
+                    } //cool
 
                     if (pathCheck == 0) {
                         switch (currentTower) {
