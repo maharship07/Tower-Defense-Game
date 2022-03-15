@@ -103,7 +103,7 @@ public class ConfigScreenTest  {
                 containsString("Money: 100"))));
     }
 
-    @Test  // Testing Milestone 2
+    @Test  // Testing Milestone 2, Written For Milestone 3 IW
     public void testDifficultyDisplay() {
         onView(withId(R.id.easyButton)).perform(click());
         onView(withId(R.id.diffText)).check(matches(withText(
