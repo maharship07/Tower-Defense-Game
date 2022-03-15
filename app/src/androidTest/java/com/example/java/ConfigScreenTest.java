@@ -63,7 +63,7 @@ public class ConfigScreenTest  {
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
     }
 
-    @Test  // Testing Milestone 2
+    @Test  // Testing Milestone 2 (vedant)
     public void testEasyConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -77,7 +77,7 @@ public class ConfigScreenTest  {
     }
 
 
-    @Test  // Testing Milestone 2
+    @Test  // Testing Milestone 2 (vedant)
     public void testNormalConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
