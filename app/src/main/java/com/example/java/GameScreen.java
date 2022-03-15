@@ -78,7 +78,7 @@ public class GameScreen extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) { //When play area is clicked
                     int x = (int) event.getX(); //Get x value of click
-                    x = x - (x % 150);  // Move x value to top-left corner of nearest box
+                    x = (x - (x % 150));  // Move x value to top-left corner of nearest box
                     int y = (int) event.getY(); //Get y value of click
                     y = y - (y % 150); // Move y value to top-left corner of nearest box
                     for (int i = 0; i < towerArray.size(); i++) {
@@ -88,32 +88,31 @@ public class GameScreen extends Activity {
                         }
                     }
                     int pathCheck = 0;
-                    if (y == 300 && (x == 0 || x == 150 || x == 300 || x == 450)) {
+                    if (y == 300 && (x == 0 || x == 150)) {
                         pathCheck = 1;
-                    } else if (x == 450 && (y == 450 || y == 600)) {
+                    } else if (x == 150 && (y == 450 || y == 600)) {
                         pathCheck = 1;
-                    } else if (y == 600 && (x == 600 || x == 750 || x == 900)) {
+                    } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
                         pathCheck = 1;
-                    } else if (x == 900 && (y == 450 || y == 300 || y == 150)) {
+                    } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
                         pathCheck = 1;
-                    } else if (y == 150 && (x == 1050 || x == 1200 || x == 1350)) {
+                    } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
                         pathCheck = 1;
-                    } else if (x == 1350 && (y == 300 || y == 450 || y == 600)) {
+                    } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
                         pathCheck = 1;
-                    } else if (y == 600 && (x == 1500 || x == 1650)) {
+                    } else if (y == 600 && (x == 1200 || x == 1350)) {
                         pathCheck = 1;
-                    } else if (x == 1650 && (y == 450 || y == 300 || y == 150)) {
+                    } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
                         pathCheck = 1;
-                    } else if (y == 150 && (x == 1800 || x == 1950)) {
+                    } else if (y == 150 && (x == 1500 || x == 1650)) {
                         pathCheck = 1;
-                    } else if (x == 1950 && (y == 300 || y == 450)) {
-                        pathCheck = 1;
-                    } else if (x == 2100 && y == 450) {
+                    } else if (x == 1650 && (y == 300 || y == 450)) {
                         pathCheck = 1;
                     }
 
                     if (pathCheck == 0) {
-                        switch (currentTower) { //View tower selected, check money, add tower if enough
+                        switch (currentTower) {
+                            //View tower selected, check money, add tower if enough
                             case 1:
                                 if (money >= Tower1.initCost(diff)) {
                                     money = money - Tower1.initCost(diff);
