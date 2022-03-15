@@ -57,7 +57,6 @@ public class ConfigScreenTest  {
     public void testWhiteSpaceName() {
         onView(withId(R.id.playerName)).perform(typeText("   "));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
-
         onView(withId(R.id.normalButton)).perform(click());
         onView(withId(R.id.startGame)).perform(click());
         onView(withId(R.id.normalButton)).check(matches(isDisplayed()));
