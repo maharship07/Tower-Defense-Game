@@ -32,7 +32,7 @@ public class ConfigScreenTest  {
     public ActivityTestRule<ConfigScreen> activityRule =
             new ActivityTestRule(ConfigScreen.class);
 
-    @Test   // Testing Milestone 2
+    @Test   // Testing Milestone 2 (Maharshi)
     public void testNormalName() {
         onView(withId(R.id.playerName)).perform(typeText("Yay"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
@@ -89,7 +89,7 @@ public class ConfigScreenTest  {
                 containsString("Money: 150"))));
     }
 
-    @Test  // Testing Milestone 2
+    @Test  // Testing Milestone 2 (Maharshi)
     public void testHardConfig() {
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
