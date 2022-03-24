@@ -3,9 +3,12 @@ package com.example.java;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,6 +19,7 @@ public class GameScreen extends Activity {
     private int health; //Player health
     private int money;
     private List<TowerInterface> towerArray = new ArrayList<>(); //Arraylist of player towers
+    private List<Enemy> enemyArray = new ArrayList<>();
     private int currentTower = 0; //Number of tower player wishes to place
 
     @SuppressLint("SetTextI18n")
@@ -41,6 +45,7 @@ public class GameScreen extends Activity {
         ImageButton tower1button = findViewById(R.id.tower1button);
         ImageButton tower2button = findViewById(R.id.tower2button);
         ImageButton tower3button = findViewById(R.id.tower3button);
+        Button waveButton = findViewById(R.id.waveButton);
         GameCanvas towermap = findViewById(R.id.gamecanvas); //Draws towers and processes clicks
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
@@ -151,5 +156,29 @@ public class GameScreen extends Activity {
                 return true;
             }
         });
+
+        waveButton.setOnClickListener(l -> {
+            waveButton.setBackgroundColor(Color.RED);
+            waveButton.setText("Wave 1");
+            enemyArray.add(new Enemy1());
+            towermap.setEnemyArray(enemyArray);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    enemyArray = towermap.getEnemyArray();
+                    for (int i = 0; i < enemyArray.size(); i++) {
+                        if (enemyArray.get(i).getxLoc() > 1800) {
+                            Enemy enemy = enemyArray.remove(i);
+                            health = health - enemy.getDamage();
+                            updateHealth(healthCounter);
+                            towermap.setEnemyArray(enemyArray);
+                        }
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            }, 1000);
+        });
     }
+
 }
