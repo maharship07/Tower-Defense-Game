@@ -29,6 +29,12 @@ public class GameCanvas extends View {
     private List<Enemy> enemyArray = new ArrayList<Enemy>();
     public GameCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                invalidate();
+            }
+        }, 1000);
     }
     //Draw tower at xy coordinates
     public void drawTower(int x, int y, int tower, Canvas canvas) {
@@ -103,12 +109,7 @@ public class GameCanvas extends View {
             drawTower(towerArray.get(i), towerArray.get(i + 1), towerArray.get(i + 2), canvas);
         }
         drawEnemy(enemyArray, canvas);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                invalidate();
-            }
-        }, 1000);
+
     }
 }
 

@@ -2,7 +2,7 @@ package com.example.java;
 
 public class Enemy3 implements Enemy {
     private int health = 5;
-    private int damage = 20;
+    private int damage = 15;
     private float xLoc;
     private float yLoc;
     private int pathDir = 1;

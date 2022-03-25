@@ -3,6 +3,7 @@ package com.example.java;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,9 +19,10 @@ import java.util.List;
 public class GameScreen extends Activity {
     private int health; //Player health
     private int money;
-    private List<TowerInterface> towerArray = new ArrayList<>(); //Arraylist of player towers
-    private List<Enemy> enemyArray = new ArrayList<>();
-    private int currentTower = 0; //Number of tower player wishes to place
+    private List<TowerInterface> towerArray; //Arraylist of player towers
+    private List<Enemy> enemyArray;
+    private int currentTower; //Number of tower player wishes to place
+    private int enemyPlaced = 0;
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -37,6 +39,9 @@ public class GameScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
+        towerArray = new ArrayList<>();
+        enemyArray = new ArrayList<>();
+        currentTower = 0;
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
         TextView tower1cost = findViewById(R.id.Tower1Cost);
@@ -158,6 +163,7 @@ public class GameScreen extends Activity {
         });
 
         waveButton.setOnClickListener(l -> {
+            waveButton.setEnabled(false);
             waveButton.setBackgroundColor(Color.RED);
             waveButton.setText("Wave 1");
             enemyArray.add(new Enemy1());
@@ -175,10 +181,30 @@ public class GameScreen extends Activity {
                             towermap.setEnemyArray(enemyArray);
                         }
                     }
+                    if (enemyPlaced == 0) {
+                        if (health % 2 == 0) {
+                            enemyArray.add(new Enemy2());
+                        } else {
+                            enemyArray.add(new Enemy3());
+                        }
+                        enemyPlaced = 4;
+                    } else {
+                        enemyPlaced--;
+                    }
+                    towermap.setEnemyArray(enemyArray);
                     handler.postDelayed(this,1000);
+                    if (health == 0) {
+                        handler.removeCallbacks(this);
+                        gameOver();
+                    }
                 }
             }, 1000);
         });
+        waveButton.setEnabled(true);
     }
-
+    public void gameOver(){
+        Intent i = new Intent(this, GameOverScreen.class);
+        startActivity(i);
+        finish();
+    }
 }
