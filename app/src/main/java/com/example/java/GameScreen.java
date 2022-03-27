@@ -22,7 +22,7 @@ public class GameScreen extends Activity {
     private List<TowerInterface> towerArray; //Arraylist of player towers
     private List<Enemy> enemyArray;
     private int currentTower; //Number of tower player wishes to place
-    private int enemyPlaced = 0;
+    private int enemyPlaced; //Stagger enemy spawns
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -42,6 +42,7 @@ public class GameScreen extends Activity {
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
         currentTower = 0;
+        enemyPlaced = 4;
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
         TextView tower1cost = findViewById(R.id.Tower1Cost);
