@@ -12,8 +12,10 @@
     <string name="money">Money:</string>
     <string name="error_text">Enter Player Name</string>
     <string name="test">test</string>
-    <string name="xy_values_go_here">XY VALUES GO HERE</string>
     <string name="price1">Price: $</string>
     <string name="price2">Price: $</string>
     <string name="price3">Price: $</string>
+    <string name="game_over_text">GAME OVER</string>
+    <string name="textview">Click restart to return to title screen</string>
+    <string name="restart">Restart</string>
 </resources>
