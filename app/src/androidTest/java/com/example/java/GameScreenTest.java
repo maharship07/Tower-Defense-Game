@@ -51,8 +51,8 @@ public class GameScreenTest {
             MotionEvent.BUTTON_PRIMARY);
     }
 
-    @Test
-    public void testNotEnoughMoney() {
+    @Test //Testing Milestone 3, Written Milestone 3 IW
+    public void testNotEnoughMoney() { //Disable animations on device before testing
         onView(withId(R.id.playerName)).perform(typeText("Player name"));
         onView(withId(R.id.playerName)).perform(closeSoftKeyboard());
 
