@@ -34,6 +34,33 @@ public class GameScreen extends Activity {
         moneyCounter.setText("Money: " + money);
     }
 
+    @SuppressLint("SetTextI18n")
+    private int getPathCheck(int x, int y) {
+        int pathCheck = 0;
+        if (y == 300 && (x == 0 || x == 150)) {
+            pathCheck = 1;
+        } else if (x == 150 && (y == 450 || y == 600)) {
+            pathCheck = 1;
+        } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
+            pathCheck = 1;
+        } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
+            pathCheck = 1;
+        } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
+            pathCheck = 1;
+        } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
+            pathCheck = 1;
+        } else if (y == 600 && (x == 1200 || x == 1350)) {
+            pathCheck = 1;
+        } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
+            pathCheck = 1;
+        } else if (y == 150 && (x == 1500 || x == 1650)) {
+            pathCheck = 1;
+        } else if (x == 1650 && (y == 300 || y == 450)) {
+            pathCheck = 1;
+        }
+        return pathCheck;
+    }
+
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +110,7 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-                    int pathCheck = 0;
-                    pathCheck = pathCheck(x, y);
+                    int pathCheck = getPathCheck(x, y);
                     if (pathCheck == 0) {
                         switch (currentTower) {
                             //View tower selected, check money, add tower if enough
@@ -141,7 +167,7 @@ public class GameScreen extends Activity {
                     for (int i = 0; i < enemyArray.size(); i++) {
                         if (enemyArray.get(i).getxLoc() > 1800) {
                             Enemy enemy = enemyArray.remove(i);
-                            health = health - enemy.getDamage();
+                            health = Math.max(0, health - enemy.getDamage());
                             updateHealth(healthCounter);
                             towermap.setEnemyArray(enemyArray);
                         }
@@ -188,31 +214,6 @@ public class GameScreen extends Activity {
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + diff);
-        }
-    }
-    public int pathCheck(int x, int y) {
-        if (y == 300 && (x == 0 || x == 150)) {
-            return 1;
-        } else if (x == 150 && (y == 450 || y == 600)) {
-            return 1;
-        } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
-            return 1;
-        } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
-            return 1;
-        } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
-            return 1;
-        } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
-            return 1;
-        } else if (y == 600 && (x == 1200 || x == 1350)) {
-            return 1;
-        } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
-            return 1;
-        } else if (y == 150 && (x == 1500 || x == 1650)) {
-            return 1;
-        } else if (x == 1650 && (y == 300 || y == 450)) {
-            return 1;
-        } else {
-            return 0;
         }
     }
 }
