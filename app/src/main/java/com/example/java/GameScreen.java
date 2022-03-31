@@ -34,6 +34,33 @@ public class GameScreen extends Activity {
         moneyCounter.setText("Money: " + money);
     }
 
+    @SuppressLint("SetTextI18n")
+    private int getPathCheck(int x, int y) {
+        int pathCheck = 0;
+        if (y == 300 && (x == 0 || x == 150)) {
+            pathCheck = 1;
+        } else if (x == 150 && (y == 450 || y == 600)) {
+            pathCheck = 1;
+        } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
+            pathCheck = 1;
+        } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
+            pathCheck = 1;
+        } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
+            pathCheck = 1;
+        } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
+            pathCheck = 1;
+        } else if (y == 600 && (x == 1200 || x == 1350)) {
+            pathCheck = 1;
+        } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
+            pathCheck = 1;
+        } else if (y == 150 && (x == 1500 || x == 1650)) {
+            pathCheck = 1;
+        } else if (x == 1650 && (y == 300 || y == 450)) {
+            pathCheck = 1;
+        }
+        return pathCheck;
+    }
+
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,28 +125,8 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-                    int pathCheck = 0;
-                    if (y == 300 && (x == 0 || x == 150)) {
-                        pathCheck = 1;
-                    } else if (x == 150 && (y == 450 || y == 600)) {
-                        pathCheck = 1;
-                    } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
-                        pathCheck = 1;
-                    } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
-                        pathCheck = 1;
-                    } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
-                        pathCheck = 1;
-                    } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
-                        pathCheck = 1;
-                    } else if (y == 600 && (x == 1200 || x == 1350)) {
-                        pathCheck = 1;
-                    } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
-                        pathCheck = 1;
-                    } else if (y == 150 && (x == 1500 || x == 1650)) {
-                        pathCheck = 1;
-                    } else if (x == 1650 && (y == 300 || y == 450)) {
-                        pathCheck = 1;
-                    } //cool
+
+                    int pathCheck = getPathCheck(x, y);
 
                     if (pathCheck == 0) {
                         switch (currentTower) {
@@ -177,7 +184,7 @@ public class GameScreen extends Activity {
                     for (int i = 0; i < enemyArray.size(); i++) {
                         if (enemyArray.get(i).getxLoc() > 1800) {
                             Enemy enemy = enemyArray.remove(i);
-                            health = health - enemy.getDamage();
+                            health = Math.max(0, health - enemy.getDamage());
                             updateHealth(healthCounter);
                             towermap.setEnemyArray(enemyArray);
                         }
@@ -193,8 +200,8 @@ public class GameScreen extends Activity {
                         enemyPlaced--;
                     }
                     towermap.setEnemyArray(enemyArray);
-                    handler.postDelayed(this,1000);
-                    if (health == 0) {
+                    handler.postDelayed(this, 1000);
+                    if (health <= 0) {
                         handler.removeCallbacks(this);
                         gameOver();
                     }
@@ -203,7 +210,7 @@ public class GameScreen extends Activity {
         });
         waveButton.setEnabled(true);
     }
-    public void gameOver(){
+    public void gameOver() {
         Intent i = new Intent(this, GameOverScreen.class);
         startActivity(i);
         finish();

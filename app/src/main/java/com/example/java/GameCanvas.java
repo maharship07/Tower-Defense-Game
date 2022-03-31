@@ -79,26 +79,28 @@ public class GameCanvas extends View {
                 canvas.drawBitmap(enemy3, x, y, null);
             }
             switch (curr.getPathDir()) {
-                case 1:
-                    if ((x-37.5) == 0 || (x-37.5) == 900 || (x-37.5) == 1500) {
-                        curr.setPathDir(2);
-                    } else if ((curr.getxLoc()-37.5) == 450 ||(curr.getxLoc()-37.5) == 1200){
-                        curr.setPathDir(3);
-                    }
-                    curr.setxLoc(x + 150);
-                    break;
-                case 2:
-                    if ((y-37.5) == 450 || ((y-37.5) == 300 && (x-37.5) == 1650)) {
-                        curr.setPathDir(1);
-                    }
-                    curr.setyLoc(y + 150);
-                    break;
-                case 3:
-                    if ((y-37.5) == 300) {
-                        curr.setPathDir(1);
-                    }
-                    curr.setyLoc(y - 150);
-                    break;
+            case 1:
+                if ((x - 37.5) == 0 || (x - 37.5) == 900 || (x - 37.5) == 1500) {
+                    curr.setPathDir(2);
+                } else if ((curr.getxLoc() - 37.5) == 450 || (curr.getxLoc() - 37.5) == 1200) {
+                    curr.setPathDir(3);
+                }
+                curr.setxLoc(x + 150);
+                break;
+            case 2:
+                if ((y - 37.5) == 450 || ((y - 37.5) == 300 && (x - 37.5) == 1650)) {
+                    curr.setPathDir(1);
+                }
+                curr.setyLoc(y + 150);
+                break;
+            case 3:
+                if ((y - 37.5) == 300) {
+                    curr.setPathDir(1);
+                }
+                curr.setyLoc(y - 150);
+                break;
+            default:
+                break;
             }
         }
     }
