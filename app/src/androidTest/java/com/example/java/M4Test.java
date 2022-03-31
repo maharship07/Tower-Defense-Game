@@ -86,8 +86,8 @@ public class M4Test  {
         onView(withId(R.id.waveButton)).perform(click());
         testEnemy.setxLoc(100);
         testEnemy.setyLoc(50);
-        int xval = testEnemy.getxLoc();
-        int yval = testEnemy.getyLoc();
+        float xval = testEnemy.getxLoc();
+        float yval = testEnemy.getyLoc();
         assertTrue(xval == 100 && yval == 50);
     }
 
