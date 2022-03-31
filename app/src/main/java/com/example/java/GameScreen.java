@@ -28,6 +28,12 @@ public class GameScreen extends Activity {
     private void updateHealth(TextView healthCounter) {
         healthCounter.setText("Health: " + health);
     }
+    public int getHealth() {
+        return this.health;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     @SuppressLint("SetTextI18n")
     private void updateMoney(TextView moneyCounter) {
