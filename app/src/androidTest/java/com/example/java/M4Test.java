@@ -78,5 +78,18 @@ public class M4Test  {
             assertTrue(true);
         }
     }
+
+    @Test
+    public void testEnemyPlacement() {
+        Enemy testEnemy = new Enemy2();
+        onView(withId(R.layout.game_screen));
+        onView(withId(R.id.waveButton)).perform(click());
+        testEnemy.setxLoc(100);
+        testEnemy.setyLoc(50);
+        int xval = testEnemy.getxLoc();
+        int yval = testEnemy.getyLoc();
+        assertTrue(xval == 100 && yval == 50);
+    }
+
 }
 
