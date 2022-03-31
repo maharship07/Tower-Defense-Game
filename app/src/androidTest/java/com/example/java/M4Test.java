@@ -64,5 +64,19 @@ public class M4Test  {
         }
         assertTrue(flag);
     }
+
+     @Test  // M4 Test by Vedant Amin
+    public void testGameOverScreen() {
+        Enemy testEnemy = new Enemy1();
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 50;
+        for (int i = 0; i < 5; i++) {
+            monumentHealth -= enemyDamage;
+        }
+        if (monumentHealth == 0) {
+            onView(R.layout.game_over_screen);
+            assertTrue(true);
+        }
+    }
 }
 
