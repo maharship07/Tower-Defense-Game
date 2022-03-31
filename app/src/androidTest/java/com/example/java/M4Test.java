@@ -79,16 +79,18 @@ public class M4Test  {
         }
     }
 
-    @Test
-    public void testEnemyPlacement() {
+    @Test  // M4 Test by Vedant Amin
+    public void testMonumentHealth() {
         Enemy testEnemy = new Enemy2();
-        onView(withId(R.layout.game_screen));
-        onView(withId(R.id.waveButton)).perform(click());
-        testEnemy.setxLoc(100);
-        testEnemy.setyLoc(50);
-        float xval = testEnemy.getxLoc();
-        float yval = testEnemy.getyLoc();
-        assertTrue(xval == 100 && yval == 50);
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 50;
+        for (int i = 0; i < 5; i++) {
+            monumentHealth -= enemyDamage;
+        }
+        if (monumentHealth == 0) {
+            onView(withId(R.layout.game_over_screen));
+            assertTrue(true);
+        }
     }
 
 }
