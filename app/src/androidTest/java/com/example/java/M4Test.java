@@ -87,7 +87,7 @@ public class M4Test  {
         for (int i = 0; i < 5; i++) {
             monumentHealth -= enemyDamage;
         }
+        assertTrue(monumentHealth == 0);
     }
-
 }
 
