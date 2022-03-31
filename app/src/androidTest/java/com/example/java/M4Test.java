@@ -87,10 +87,6 @@ public class M4Test  {
         for (int i = 0; i < 5; i++) {
             monumentHealth -= enemyDamage;
         }
-        if (monumentHealth == 0) {
-            onView(withId(R.layout.game_over_screen));
-            assertTrue(true);
-        }
     }
 
 }
