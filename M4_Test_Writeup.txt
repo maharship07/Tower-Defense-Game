@@ -1,0 +1,15 @@
+Manu Gupta:
+    testEnemyLocationSetter():
+         This method tests whether setting an enemy's location updates properly. It does this by instantiating an example enemy (enemy1) and calling it's 
+         setter methods accordingly.
+
+    testEnemyHealth():
+        This method tests whether damaging an enemy works. It takes Enemy2 as an example which has a health of 20 and applies a damage of 10 on the enemy.
+
+Maharshi Patel:
+    testDamageToMonument():
+        This method tests if the enemy damages the monument when it has certain health, the health for enemy should change accordingly. This can be used
+        when we don't have specific health as well.
+
+    testRestartButton():
+        This method tests if enemy damage leads to restart screen. If so, it should also result in game start screen with the flag of true.
