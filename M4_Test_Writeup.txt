@@ -13,3 +13,10 @@ Maharshi Patel:
 
     testRestartButton():
         This method tests if enemy damage leads to restart screen. If so, it should also result in game start screen with the flag of true.
+
+Vedant Amin:
+    testGameOverScreen():
+        This method tests if enemy damage leads to health equal 0 and if that happens, you should switch to game over screen.
+
+    testMonumentHealth():
+        This method tests whether damaging monument with enemy damage will lead to monument health equal to 0.
