@@ -12,4 +12,4 @@ Maharshi Patel:
         when we don't have specific health as well.
 
     testRestartButton():
-        This method tests
+        This method tests if enemy damage leads to restart screen. If so, it should also result in game start screen with the flag of true.
