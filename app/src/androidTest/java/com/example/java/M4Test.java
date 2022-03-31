@@ -89,5 +89,25 @@ public class M4Test  {
         }
         assertTrue(monumentHealth == 0);
     }
+
+    @Test // M4 Test by Terry Ma
+    public void testEnemyInitPosition() {
+        Enemy testEnemy = new Enemy3();
+        float x = testEnemy.getxLoc();
+        float y = testEnemy.getyLoc();
+
+        //int remainingHealth = (monumentHealth - enemyDamage);
+        assertTrue(x == 37.5);
+        assertTrue(y == 337.5);
+    }
+
+    @Test // M4 Test by Terry Ma
+    public void testSetHealth() {
+        Enemy testEnemy = new Enemy1();
+        testEnemy.setHealth(10000000);
+        int health = testEnemy.getHealth();
+        assertTrue(health == 10000000);
+
+    }
 }
 
