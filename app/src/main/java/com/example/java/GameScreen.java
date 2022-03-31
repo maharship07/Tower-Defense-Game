@@ -82,22 +82,7 @@ public class GameScreen extends Activity {
         GameCanvas towermap = findViewById(R.id.gamecanvas); //Draws towers and processes clicks
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
-        switch (diff) { //initializes game parameters based on difficulty parameter
-        case 0:
-            health = 150; //Easy health = 150
-            money = 200;
-            break;
-        case 1:
-            health = 100; //Normal health = 100
-            money = 150;
-            break;
-        case 2:
-            health = 50; //Hard health = 50
-            money = 100;
-            break;
-        default:
-            throw new IllegalStateException("Unexpected value: " + diff);
-        }
+        initValues(diff);
         tower1cost.setText("Price: $" + Tower1.initCost(diff));
         tower2cost.setText("Price: $" + Tower2.initCost(diff));
         tower3cost.setText("Price: $" + Tower3.initCost(diff));
@@ -125,9 +110,7 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
-
                     int pathCheck = getPathCheck(x, y);
-
                     if (pathCheck == 0) {
                         switch (currentTower) {
                             //View tower selected, check money, add tower if enough
@@ -214,5 +197,23 @@ public class GameScreen extends Activity {
         Intent i = new Intent(this, GameOverScreen.class);
         startActivity(i);
         finish();
+    }
+    public void initValues(int diff) {
+        switch (diff) { //initializes game parameters based on difficulty parameter
+        case 0:
+            health = 150; //Easy health = 150
+            money = 200;
+            break;
+        case 1:
+            health = 100; //Normal health = 100
+            money = 150;
+            break;
+        case 2:
+            health = 50; //Hard health = 50
+            money = 100;
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + diff);
+        }
     }
 }
