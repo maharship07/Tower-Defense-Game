@@ -1,0 +1,9 @@
+Manu Gupta:
+    testEnemyLocationSetter():
+         This method tests whether setting an enemy's location updates properly. It does this by instantiating an example enemy (enemy1) and calling it's 
+         setter methods accordingly.
+
+    testEnemyHealth():
+        This method tests whether damaging an enemy works. It takes Enemy2 as an example which has a health of 20 and applies a damage of 10 on the enemy.
+
+
