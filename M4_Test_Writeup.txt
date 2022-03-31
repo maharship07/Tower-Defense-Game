@@ -6,4 +6,10 @@ Manu Gupta:
     testEnemyHealth():
         This method tests whether damaging an enemy works. It takes Enemy2 as an example which has a health of 20 and applies a damage of 10 on the enemy.
 
+Maharshi Patel:
+    testDamageToMonument():
+        This method tests if the enemy damages the monument when it has certain health, the health for enemy should change accordingly. This can be used
+        when we don't have specific health as well.
 
+    testRestartButton():
+        This method tests
