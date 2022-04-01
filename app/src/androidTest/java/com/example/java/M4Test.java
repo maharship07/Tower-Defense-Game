@@ -1,11 +1,25 @@
 package com.example.java;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class M4Test  {
+    @Rule
+    public ActivityTestRule<ConfigScreen> activityRule2 =
+            new ActivityTestRule(GameOverScreen.class);
+
     @Test // M4 Test made by Manu Gupta
     public void testEnemyLocationSetter() {
         Enemy testEnemy = new Enemy1(); //xLoc should be 37.5 and yLoc should be 337.5;
@@ -24,6 +38,76 @@ public class M4Test  {
         assertTrue(testEnemy.getHealth() == 10);
     }
 
+    @Test // M4 Test by Maharshi Patel
+    public void testDamageToMonument() {
+        Enemy testEnemy = new Enemy3();
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 50;
+        int remainingHealth = (monumentHealth - enemyDamage);
+        assertTrue(remainingHealth == 35);
+    }
 
+    @Test // M4 Test by Maharshi Patel
+    public void testRestartButton() {
+        Enemy testEnemy = new Enemy3();
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 15;
+        int remainingHealth = (monumentHealth - enemyDamage);
+        boolean flag;
+
+        if (remainingHealth == 0) {
+            onView(withId(R.layout.game_over_screen));
+            onView(withId(R.id.restartButton)).perform(click());
+            flag = true;
+        } else {
+            flag = false;
+        }
+        assertTrue(flag);
+    }
+
+     @Test  // M4 Test by Vedant Amin
+    public void testGameOverScreen() {
+        Enemy testEnemy = new Enemy1();
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 50;
+        for (int i = 0; i < 5; i++) {
+            monumentHealth -= enemyDamage;
+        }
+        if (monumentHealth == 0) {
+            onView(withId(R.layout.game_over_screen));
+            assertTrue(true);
+        }
+    }
+
+    @Test  // M4 Test by Vedant Amin
+    public void testMonumentHealth() {
+        Enemy testEnemy = new Enemy2();
+        int enemyDamage = testEnemy.getDamage();
+        int monumentHealth = 50;
+        for (int i = 0; i < 5; i++) {
+            monumentHealth -= enemyDamage;
+        }
+        assertTrue(monumentHealth == 0);
+    }
+
+    @Test // M4 Test by Terry Ma
+    public void testEnemyInitPosition() {
+        Enemy testEnemy = new Enemy3();
+        float x = testEnemy.getxLoc();
+        float y = testEnemy.getyLoc();
+
+        //int remainingHealth = (monumentHealth - enemyDamage);
+        assertTrue(x == 37.5);
+        assertTrue(y == 337.5);
+    }
+
+    @Test // M4 Test by Terry Ma
+    public void testSetHealth() {
+        Enemy testEnemy = new Enemy1();
+        testEnemy.setHealth(10000000);
+        int health = testEnemy.getHealth();
+        assertTrue(health == 10000000);
+
+    }
 }
 
