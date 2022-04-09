@@ -20,7 +20,6 @@ Vedant Amin:
 
     testMonumentHealth():
         This method tests whether damaging monument with enemy damage will lead to monument health equal to 0.
-
 Ian Westcott:
     testAttackMethod():
 	This method tests whether the attack method subtracts health from player correctly. This is important as the enemy must be able to damage
@@ -29,3 +28,12 @@ Ian Westcott:
     testEnemyAddition():
 	This method tests the addition of the correct type of enemies to the enemy array upon addEnemy() call. This is important as it ensures that all 3
 	enemies can be added to the enemy array once combat has started, and it makes sure that enemies are actually added during a combat wave.
+
+Terry Ma:
+    testEnemyInitPosition():
+        This method tests whether the enemies spawned start at the beginning of the path. Tnsert mode: escape to normal and savehis is done by using an internal representat        :ion of x and y coordinates at which the enemies must spawn.
+
+    testSetHealth():
+        This method tests whether the setter for health works. It does this by setting the health of the enemy to a high value and seeing what happens in terms of numerical instability. 
+
+
