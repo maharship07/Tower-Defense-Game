@@ -19,6 +19,7 @@ public class Tower2 implements TowerInterface {
                     Math.abs(enemyArray.get(i).getyLoc() - yLoc - 37.5) < (150*range) &&
                             enemyArray.get(i).getHealth() != 0) {
                 enemyArray.get(i).setHealth(enemyArray.get(i).getHealth()-damage);
+                break;
             }
         }
         return enemyArray;
