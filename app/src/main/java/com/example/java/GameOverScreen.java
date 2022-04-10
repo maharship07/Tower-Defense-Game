@@ -12,9 +12,12 @@ public class GameOverScreen extends AppCompatActivity {
         setContentView(R.layout.game_over_screen);
         Button restart = findViewById(R.id.restartButton);
         restart.setOnClickListener(l -> {
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
-            finish();
+            moveToStartScreen();
         });
+    }
+    public void moveToStartScreen() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

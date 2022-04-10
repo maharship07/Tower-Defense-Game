@@ -2,7 +2,6 @@ package com.example.java;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,11 +27,21 @@ public class GameScreen extends Activity {
     private void updateHealth(TextView healthCounter) {
         healthCounter.setText("Health: " + health);
     }
+
     public int getHealth() {
         return this.health;
     }
+
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public List<Enemy> getEnemyArray() {
+        return enemyArray;
+    }
+
+    public void setEnemyPlaced(int delay) {
+        enemyPlaced = delay;
     }
 
     @SuppressLint("SetTextI18n")
@@ -43,25 +52,14 @@ public class GameScreen extends Activity {
     @SuppressLint("SetTextI18n")
     private int getPathCheck(int x, int y) {
         int pathCheck = 0;
-        if (y == 300 && (x == 0 || x == 150)) {
+        if (x == 0 && y == 300) {
             pathCheck = 1;
-        } else if (x == 150 && (y == 450 || y == 600)) {
+        } else if (y == 150 && ((x >= 600 && x <= 1050) || (x >= 1350 && x <= 1650))) {
             pathCheck = 1;
-        } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
+        } else if ((y >= 300 && y<=450) && (x == 150 || x == 600 || x == 1050
+                || x == 1350 ||x == 1650)) {
             pathCheck = 1;
-        } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
-            pathCheck = 1;
-        } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
-            pathCheck = 1;
-        } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
-            pathCheck = 1;
-        } else if (y == 600 && (x == 1200 || x == 1350)) {
-            pathCheck = 1;
-        } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
-            pathCheck = 1;
-        } else if (y == 150 && (x == 1500 || x == 1650)) {
-            pathCheck = 1;
-        } else if (x == 1650 && (y == 300 || y == 450)) {
+        } else if (y == 600 && ((x >= 150 && x <= 600) || (x >= 1050 && x <= 1350))) {
             pathCheck = 1;
         }
         return pathCheck;
@@ -75,7 +73,7 @@ public class GameScreen extends Activity {
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
         currentTower = 0;
-        enemyPlaced = 4;
+        enemyPlaced = 2;
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
         TextView tower1cost = findViewById(R.id.Tower1Cost);
@@ -87,6 +85,10 @@ public class GameScreen extends Activity {
         Button waveButton = findViewById(R.id.waveButton);
         GameCanvas towermap = findViewById(R.id.gamecanvas); //Draws towers and processes clicks
         Bundle extras = getIntent().getExtras(); //Pulls all variables passed from config screen
+        if (extras == null) {
+            extras = new Bundle();
+            extras.putInt("diff", 1);
+        }
         int diff = extras.getInt("diff"); // Pulls difficulty from config screen
         initValues(diff);
         tower1cost.setText("Price: $" + Tower1.initCost(diff));
@@ -116,42 +118,15 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
+
                     int pathCheck = getPathCheck(x, y);
                     if (pathCheck == 0) {
-                        switch (currentTower) {
-                            //View tower selected, check money, add tower if enough
-                            case 1:
-                                if (money >= Tower1.initCost(diff)) {
-                                    money = money - Tower1.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 1);
-                                    Tower1 newTower = new Tower1(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 2:
-                                if (money >= Tower2.initCost(diff)) {
-                                    money = money - Tower2.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 2);
-                                    Tower2 newTower = new Tower2(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 3:
-                                if (money >= Tower3.initCost(diff)) {
-                                    money = money - Tower3.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 3);
-                                    Tower3 newTower = new Tower3(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            default:
-                                break;
+                        if (money >= TowerFactory.getTowerCost(currentTower, diff)) {
+                            money -= TowerFactory.getTowerCost(currentTower, diff);
+                            updateMoney(moneyCounter);
+                            towermap.addTower(x, y, 1);
+                            TowerInterface newTower = TowerFactory.getTower(currentTower, x, y);
+                            towerArray.add(newTower);
                         }
                     }
                 }
@@ -164,38 +139,7 @@ public class GameScreen extends Activity {
             waveButton.setBackgroundColor(Color.RED);
             waveButton.setText("Wave 1");
             enemyArray.add(new Enemy1());
-            towermap.setEnemyArray(enemyArray);
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    enemyArray = towermap.getEnemyArray();
-                    for (int i = 0; i < enemyArray.size(); i++) {
-                        if (enemyArray.get(i).getxLoc() > 1800) {
-                            Enemy enemy = enemyArray.remove(i);
-                            health = Math.max(0, health - enemy.getDamage());
-                            updateHealth(healthCounter);
-                            towermap.setEnemyArray(enemyArray);
-                        }
-                    }
-                    if (enemyPlaced == 0) {
-                        if (health % 2 == 0) {
-                            enemyArray.add(new Enemy2());
-                        } else {
-                            enemyArray.add(new Enemy3());
-                        }
-                        enemyPlaced = 4;
-                    } else {
-                        enemyPlaced--;
-                    }
-                    towermap.setEnemyArray(enemyArray);
-                    handler.postDelayed(this, 1000);
-                    if (health <= 0) {
-                        handler.removeCallbacks(this);
-                        gameOver();
-                    }
-                }
-            }, 1000);
+            enemyWave(towermap, healthCounter, moneyCounter);
         });
         waveButton.setEnabled(true);
     }
@@ -220,6 +164,61 @@ public class GameScreen extends Activity {
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + diff);
+        }
+    }
+    public void enemyWave(GameCanvas towermap, TextView healthCounter, TextView moneyCounter) {
+        towermap.setEnemyArray(enemyArray);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                enemyArray = towermap.getEnemyArray();
+                for (int i = 0; i < enemyArray.size(); i++) {
+                    if (enemyArray.get(i).getxLoc() > 1800) {
+                        Enemy enemy = enemyArray.remove(i);
+                        attack(enemy);
+                        updateHealth(healthCounter);
+                        towermap.setEnemyArray(enemyArray);
+                    }
+                }
+                for (int i = 0; i < towerArray.size(); i++) {
+                    towerArray.get(i).attack(enemyArray);
+                }
+                removeDeadEnemies();
+                updateMoney(moneyCounter);
+                addEnemy();
+                towermap.setEnemyArray(enemyArray);
+                handler.postDelayed(this, 1000);
+                if (health <= 0) {
+                    handler.removeCallbacks(this);
+                    gameOver();
+                }
+            }
+        }, 1000);
+    }
+    public void attack(Enemy enemy) {
+        health = Math.max(0, health - enemy.getDamage());
+    }
+
+    private void removeDeadEnemies() {
+        for (int i = 0; i < enemyArray.size(); i++) {
+            if (enemyArray.get(i).getHealth() <= 0) {
+                money += enemyArray.get(i).getMoney();
+                enemyArray.remove(i);
+            }
+        }
+    }
+
+    public void addEnemy() {
+        if (enemyPlaced == 0) {
+            if (health % 2 == 0) {
+                enemyArray.add(new Enemy2());
+            } else {
+                enemyArray.add(new Enemy3());
+            }
+            enemyPlaced = 2;
+        } else {
+            enemyPlaced--;
         }
     }
 }

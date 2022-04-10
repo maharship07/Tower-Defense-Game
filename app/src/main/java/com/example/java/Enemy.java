@@ -10,5 +10,6 @@ public interface Enemy {
     void setyLoc(float yLoc);
     int getPathDir();
     void setPathDir(int pathDir);
-
+    int getMoney();
+    float getHealthPercentage();
 }

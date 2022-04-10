@@ -1,8 +1,10 @@
 package com.example.java;
 
+import java.util.List;
+//AOE Tower
 public class Tower2 implements TowerInterface {
-    private int damage = 50;
-    private int range = 100;
+    private int damage = 15;
+    private int range = 2;
     private int xLoc;
     private int yLoc;
     public Tower2(int x, int y) {
@@ -11,8 +13,16 @@ public class Tower2 implements TowerInterface {
     }
 
     @Override
-    public void attack() {
-
+    public List<Enemy> attack(List<Enemy> enemyArray) {
+        for (int i = 0; i < enemyArray.size(); i++) {
+            if (Math.abs(enemyArray.get(i).getxLoc() - xLoc - 37.5) < (150*range) &&
+                    Math.abs(enemyArray.get(i).getyLoc() - yLoc - 37.5) < (150*range) &&
+                            enemyArray.get(i).getHealth() != 0) {
+                enemyArray.get(i).setHealth(enemyArray.get(i).getHealth()-damage);
+                break;
+            }
+        }
+        return enemyArray;
     }
 
     public static int initCost(int difficulty) {
