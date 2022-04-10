@@ -118,42 +118,15 @@ public class GameScreen extends Activity {
                             currentTower = 0; //If tower exists in box, do not place tower
                         }
                     }
+
                     int pathCheck = getPathCheck(x, y);
                     if (pathCheck == 0) {
-                        switch (currentTower) {
-                            //View tower selected, check money, add tower if enough
-                            case 1:
-                                if (money >= Tower1.initCost(diff)) {
-                                    money = money - Tower1.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 1);
-                                    Tower1 newTower = new Tower1(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 2:
-                                if (money >= Tower2.initCost(diff)) {
-                                    money = money - Tower2.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 2);
-                                    Tower2 newTower = new Tower2(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            case 3:
-                                if (money >= Tower3.initCost(diff)) {
-                                    money = money - Tower3.initCost(diff);
-                                    updateMoney(moneyCounter);
-                                    towermap.addTower(x, y, 3);
-                                    Tower3 newTower = new Tower3(x, y);
-                                    towerArray.add(newTower);
-                                }
-                                currentTower = 0;
-                                break;
-                            default:
-                                break;
+                        if (money >= TowerFactory.getTowerCost(currentTower, diff)) {
+                            money -= TowerFactory.getTowerCost(currentTower, diff);
+                            updateMoney(moneyCounter);
+                            towermap.addTower(x, y, 1);
+                            TowerInterface newTower = TowerFactory.getTower(currentTower, x, y);
+                            towerArray.add(newTower);
                         }
                     }
                 }
