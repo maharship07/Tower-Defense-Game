@@ -1,7 +1,7 @@
 package com.example.java;
 
 public class Enemy3 implements Enemy {
-    private int health = 15;
+    private int health = 30;
     private int damage = 15;
     private float xLoc;
     private float yLoc;
@@ -14,7 +14,7 @@ public class Enemy3 implements Enemy {
 
     @Override
     public float getHealthPercentage() {
-        return ((float)health)/((float)15);
+        return ((float)health)/((float)30);
     }
 
     @Override

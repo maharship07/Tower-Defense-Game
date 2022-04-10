@@ -124,7 +124,7 @@ public class GameScreen extends Activity {
                         if (money >= TowerFactory.getTowerCost(currentTower, diff)) {
                             money -= TowerFactory.getTowerCost(currentTower, diff);
                             updateMoney(moneyCounter);
-                            towermap.addTower(x, y, 1);
+                            towermap.addTower(x, y, currentTower);
                             TowerInterface newTower = TowerFactory.getTower(currentTower, x, y);
                             towerArray.add(newTower);
                         }

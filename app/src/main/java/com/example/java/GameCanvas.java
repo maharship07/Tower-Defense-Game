@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -70,6 +71,8 @@ public class GameCanvas extends View {
         return this.enemyArray;
     }
     public void drawEnemy(List<Enemy> enemyArray, Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor((255<<16)|(255<<24));
         for (int i = 0; i < enemyArray.size(); i++) {
             Enemy curr = enemyArray.get(i);
             float x = curr.getxLoc();
@@ -107,6 +110,9 @@ public class GameCanvas extends View {
             } else {
                 canvas.drawBitmap(enemy3, x, y, null);
             }
+            canvas.drawRect((float)(x-25), (float)(y+77.5),
+                    (float)(x+(100*curr.getHealthPercentage())),
+                    (float)(y+100), paint);
         }
     }
     @Override
