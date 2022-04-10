@@ -25,6 +25,7 @@ public class Tower1 implements TowerInterface {
         return enemyArray;
     }
 
+
     public static int initCost(int difficulty) {
         switch (difficulty) {
         case 0:
