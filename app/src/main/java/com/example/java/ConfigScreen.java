@@ -26,10 +26,10 @@ public class ConfigScreen extends AppCompatActivity {
         TextView errorText = findViewById(R.id.errorText);
         AtomicInteger currDiff = new AtomicInteger(1);
         Button startButton = findViewById(R.id.startGame);
-        setDifficulty(easyButton, normalButton, hardButton, currDiff, diffText);
-        if (currDiff == 0) {
+        setDifficulty(easyButton, normalButton, hardButton, currDiff);
+        if (currDiff.intValue() == 0) {
             diffText.setText("Current Difficulty: Easy");
-        } else if (currDiff == 1) {
+        } else if (currDiff.intValue() == 1) {
             diffText.setText("Current Difficulty: Normal");
         } else {
             diffText.setText("Current Difficulty: Hard");
