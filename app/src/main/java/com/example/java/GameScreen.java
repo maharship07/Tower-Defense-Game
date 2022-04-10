@@ -52,25 +52,14 @@ public class GameScreen extends Activity {
     @SuppressLint("SetTextI18n")
     private int getPathCheck(int x, int y) {
         int pathCheck = 0;
-        if (y == 300 && (x == 0 || x == 150)) {
+        if (x == 0 && y == 300) {
             pathCheck = 1;
-        } else if (x == 150 && (y == 450 || y == 600)) {
+        } else if (y == 150 && ((x >= 600 && x <= 1050) || (x >= 1350 && x <= 1650))) {
             pathCheck = 1;
-        } else if (y == 600 && (x == 300 || x == 450 || x == 600)) {
+        } else if ((y >= 300 && y<=450) && (x == 150 || x == 600 || x == 1050
+                || x == 1350 ||x == 1650)) {
             pathCheck = 1;
-        } else if (x == 600 && (y == 450 || y == 300 || y == 150)) {
-            pathCheck = 1;
-        } else if (y == 150 && (x == 750 || x == 900 || x == 1050)) {
-            pathCheck = 1;
-        } else if (x == 1050 && (y == 300 || y == 450 || y == 600)) {
-            pathCheck = 1;
-        } else if (y == 600 && (x == 1200 || x == 1350)) {
-            pathCheck = 1;
-        } else if (x == 1350 && (y == 450 || y == 300 || y == 150)) {
-            pathCheck = 1;
-        } else if (y == 150 && (x == 1500 || x == 1650)) {
-            pathCheck = 1;
-        } else if (x == 1650 && (y == 300 || y == 450)) {
+        } else if (y == 600 && ((x >= 150 && x <= 600) || (x >= 1050 && x <= 1350))) {
             pathCheck = 1;
         }
         return pathCheck;
@@ -84,7 +73,7 @@ public class GameScreen extends Activity {
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
         currentTower = 0;
-        enemyPlaced = 4;
+        enemyPlaced = 2;
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
         TextView tower1cost = findViewById(R.id.Tower1Cost);
@@ -177,7 +166,7 @@ public class GameScreen extends Activity {
             waveButton.setBackgroundColor(Color.RED);
             waveButton.setText("Wave 1");
             enemyArray.add(new Enemy1());
-            enemyWave(towermap, healthCounter);
+            enemyWave(towermap, healthCounter, moneyCounter);
         });
         waveButton.setEnabled(true);
     }
@@ -204,7 +193,7 @@ public class GameScreen extends Activity {
             throw new IllegalStateException("Unexpected value: " + diff);
         }
     }
-    public void enemyWave(GameCanvas towermap, TextView healthCounter) {
+    public void enemyWave(GameCanvas towermap, TextView healthCounter, TextView moneyCounter) {
         towermap.setEnemyArray(enemyArray);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -219,6 +208,11 @@ public class GameScreen extends Activity {
                         towermap.setEnemyArray(enemyArray);
                     }
                 }
+                for (int i = 0; i < towerArray.size(); i++) {
+                    towerArray.get(i).attack(enemyArray);
+                }
+                removeDeadEnemies();
+                updateMoney(moneyCounter);
                 addEnemy();
                 towermap.setEnemyArray(enemyArray);
                 handler.postDelayed(this, 1000);
@@ -233,6 +227,15 @@ public class GameScreen extends Activity {
         health = Math.max(0, health - enemy.getDamage());
     }
 
+    private void removeDeadEnemies() {
+        for (int i = 0; i < enemyArray.size(); i++) {
+            if (enemyArray.get(i).getHealth() <= 0) {
+                money += enemyArray.get(i).getMoney();
+                enemyArray.remove(i);
+            }
+        }
+    }
+
     public void addEnemy() {
         if (enemyPlaced == 0) {
             if (health % 2 == 0) {
@@ -240,7 +243,7 @@ public class GameScreen extends Activity {
             } else {
                 enemyArray.add(new Enemy3());
             }
-            enemyPlaced = 4;
+            enemyPlaced = 2;
         } else {
             enemyPlaced--;
         }
