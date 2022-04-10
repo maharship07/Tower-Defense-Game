@@ -6,9 +6,15 @@ public class Enemy1 implements Enemy {
     private float xLoc;
     private float yLoc;
     private int pathDir = 1;
+    private int money = 10;
     public Enemy1() {
         this.xLoc = (float) 37.5;
         this.yLoc = (float) 337.5;
+    }
+
+    @Override
+    public float getHealthPercentage() {
+        return ((float)health)/((float)10);
     }
 
     @Override
@@ -53,4 +59,10 @@ public class Enemy1 implements Enemy {
     public void setPathDir(int pathDir) {
         this.pathDir = pathDir;
     }
+
+    @Override
+    public int getMoney() {
+        return money;
+    }
+
 }

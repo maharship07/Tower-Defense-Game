@@ -1,8 +1,11 @@
 package com.example.java;
 
+import java.util.List;
+//Sniper Tower? Cooldown?
 public class Tower3 implements TowerInterface {
     private int damage = 20;
-    private int range = 500;
+    private int range = 5;
+    private int cooldown = 0;
     private int xLoc;
     private int yLoc;
     public Tower3(int x, int y) {
@@ -11,8 +14,21 @@ public class Tower3 implements TowerInterface {
     }
 
     @Override
-    public void attack() {
-
+    public List<Enemy> attack(List<Enemy> enemyArray) {
+        if (cooldown == 1) {
+            cooldown--;
+            return enemyArray;
+        }
+        for (int i = 0; i < enemyArray.size(); i++) {
+            if (Math.abs(enemyArray.get(i).getxLoc() - xLoc - 37.5) < (150*range) &&
+                    Math.abs(enemyArray.get(i).getyLoc() - yLoc - 37.5) < (150*range) &&
+                            enemyArray.get(i).getHealth() != 0) {
+                enemyArray.get(i).setHealth(enemyArray.get(i).getHealth()-damage);
+                break;
+            }
+        }
+        cooldown++;
+        return enemyArray;
     }
 
     public static int initCost(int difficulty) {

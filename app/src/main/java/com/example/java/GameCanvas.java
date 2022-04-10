@@ -25,6 +25,7 @@ public class GameCanvas extends View {
             getResources(), R.drawable.enemy_2), 75, 75, true);
     private final Bitmap enemy3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.enemy_3), 75, 75, true);
+    private int move = 0;
     private List<Integer> towerArray = new ArrayList<Integer>();
     private List<Enemy> enemyArray = new ArrayList<Enemy>();
     public GameCanvas(Context context, AttributeSet attrs) {
@@ -57,10 +58,12 @@ public class GameCanvas extends View {
         towerArray.add(x);
         towerArray.add(y);
         towerArray.add(tower);
+        move = 1;
         invalidate(); //Redraw canvas when tower is added
     }
     public void setEnemyArray(List<Enemy> enemyArray) {
         this.enemyArray = enemyArray;
+        move = 0;
         invalidate();
     }
     public List<Enemy> getEnemyArray() {
@@ -71,36 +74,38 @@ public class GameCanvas extends View {
             Enemy curr = enemyArray.get(i);
             float x = curr.getxLoc();
             float y = curr.getyLoc();
+            if (move == 0) {
+                switch (curr.getPathDir()) {
+                case 1:
+                    if ((x - 37.5) == 0 || (x - 37.5) == 900 || (x - 37.5) == 1500) {
+                        curr.setPathDir(2);
+                    } else if ((curr.getxLoc() - 37.5) == 450 || (curr.getxLoc() - 37.5) == 1200) {
+                        curr.setPathDir(3);
+                    }
+                    curr.setxLoc(x + 150);
+                    break;
+                case 2:
+                    if ((y - 37.5) == 450 || ((y - 37.5) == 300 && (x - 37.5) == 1650)) {
+                        curr.setPathDir(1);
+                    }
+                    curr.setyLoc(y + 150);
+                    break;
+                case 3:
+                    if ((y - 37.5) == 300) {
+                        curr.setPathDir(1);
+                    }
+                    curr.setyLoc(y - 150);
+                    break;
+                default:
+                    break;
+                }
+            }
             if (curr instanceof Enemy1) {
                 canvas.drawBitmap(enemy1, x, y, null);
             } else if (curr instanceof Enemy2) {
                 canvas.drawBitmap(enemy2, x, y, null);
             } else {
                 canvas.drawBitmap(enemy3, x, y, null);
-            }
-            switch (curr.getPathDir()) {
-            case 1:
-                if ((x - 37.5) == 0 || (x - 37.5) == 900 || (x - 37.5) == 1500) {
-                    curr.setPathDir(2);
-                } else if ((curr.getxLoc() - 37.5) == 450 || (curr.getxLoc() - 37.5) == 1200) {
-                    curr.setPathDir(3);
-                }
-                curr.setxLoc(x + 150);
-                break;
-            case 2:
-                if ((y - 37.5) == 450 || ((y - 37.5) == 300 && (x - 37.5) == 1650)) {
-                    curr.setPathDir(1);
-                }
-                curr.setyLoc(y + 150);
-                break;
-            case 3:
-                if ((y - 37.5) == 300) {
-                    curr.setPathDir(1);
-                }
-                curr.setyLoc(y - 150);
-                break;
-            default:
-                break;
             }
         }
     }
@@ -111,7 +116,6 @@ public class GameCanvas extends View {
             drawTower(towerArray.get(i), towerArray.get(i + 1), towerArray.get(i + 2), canvas);
         }
         drawEnemy(enemyArray, canvas);
-
     }
 }
 
