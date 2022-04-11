@@ -25,19 +25,8 @@ public class ConfigScreen extends AppCompatActivity {
         String name = playerName.getText().toString();
         TextView errorText = findViewById(R.id.errorText);
         AtomicInteger currDiff = new AtomicInteger(1);
-        easyButton.setOnClickListener(l -> { //Sets difficulty to easy
-            currDiff.set(0);
-            diffText.setText("Current Difficulty: Easy");
-        });
-        normalButton.setOnClickListener(l -> { //Sets difficulty to normal
-            currDiff.set(1);
-            diffText.setText("Current Difficulty: Normal");
-        });
-        hardButton.setOnClickListener(l -> { //Sets difficulty to hard
-            currDiff.set(2);
-            diffText.setText("Current Difficulty: Hard");
-        });
         Button startButton = findViewById(R.id.startGame);
+        setDifficulty(easyButton, normalButton, hardButton, currDiff, diffText);
         startButton.setOnClickListener(l -> { //Switches to game screen and passes difficulty
             if (playerName.getText() == null) {
                 errorText.setText("Name can't be null");
@@ -51,6 +40,22 @@ public class ConfigScreen extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
+        });
+        }
+    @SuppressLint("SetTextI18n")
+    protected void setDifficulty(Button easyButton, Button normalButton, Button hardButton,
+                                 AtomicInteger currDiff, TextView diffText) {
+        easyButton.setOnClickListener(l -> { //Sets difficulty to easy
+            currDiff.set(0);
+            diffText.setText("Current Difficulty: Easy");
+        });
+        normalButton.setOnClickListener(l -> { //Sets difficulty to normal
+            currDiff.set(1);
+            diffText.setText("Current Difficulty: Normal");
+        });
+        hardButton.setOnClickListener(l -> { //Sets difficulty to hard
+            currDiff.set(2);
+            diffText.setText("Current Difficulty: Hard");
         });
     }
 }
