@@ -12,4 +12,12 @@ Manu Gupta:
     testTowerFactoryType():
         This test checks whether the tower factory class correctly instantiates the correct tower when different values of diff are passed in. It does this by testing the damage and range values of each 
 tower when created 
+
+Vedant Amin:
+    testTower3Attack():
+        This test is for sniper tower of type Tower 3 against a list of enemies. The test makes sure that the tower only attacks enemies along the path that are within the attack range of the tower. Hence, it makes sure that Tower 3 has a fully functioning combat.
+    
+    testRemoveEnemies():
+        This test checks the functionality of removeDeadEnemies() which basically removes the enemies once its health reaches 0. It does that by creating a list of dummy enemies and killing some of them and checking if removeDeadEnemies() removes it from the screen.
+    
          

@@ -95,7 +95,7 @@ public class M5Test {
     }
 
     @Test //M5 Test by Vedant Amin
-    public void tower3AttackTest() {
+    public void testTower3Attack() {
         TowerInterface tower = new Tower3(1200, 450);
         List<Enemy> enemyList = enemyListSetup();
         List<Float> attackArray = new ArrayList<>();
@@ -107,7 +107,7 @@ public class M5Test {
         assertEquals(enemyList.get(4).getHealthPercentage(), 1, 0);
     }
 
-    @Test
+    @Test //M5 Test by Vedant Amin
     public void testRemoveEnemy() {
         GameScreen gs = activityRule2.getActivity();
         Enemy1 enemy1 = new Enemy1();
