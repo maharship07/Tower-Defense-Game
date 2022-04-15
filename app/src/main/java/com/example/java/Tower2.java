@@ -3,8 +3,8 @@ package com.example.java;
 import java.util.List;
 //AOE Tower
 public class Tower2 implements TowerInterface {
-    private int damage = 15;
-    private int range = 2;
+    private int damage = 5;
+    private int range = 1;
     private int xLoc;
     private int yLoc;
     public Tower2(int x, int y) {
@@ -13,13 +13,21 @@ public class Tower2 implements TowerInterface {
     }
 
     @Override
-    public List<Enemy> attack(List<Enemy> enemyArray) {
+    public List<Enemy> attack(List<Enemy> enemyArray, List<Float> attackArray) {
+        int attack = 0;
         for (int i = 0; i < enemyArray.size(); i++) {
-            if (Math.abs(enemyArray.get(i).getxLoc() - xLoc - 37.5) < (150*range) &&
-                    Math.abs(enemyArray.get(i).getyLoc() - yLoc - 37.5) < (150*range) &&
-                            enemyArray.get(i).getHealth() != 0) {
-                enemyArray.get(i).setHealth(enemyArray.get(i).getHealth()-damage);
-                break;
+            if (Math.abs(enemyArray.get(i).getxLoc() - xLoc - 37.5) <= (150 * range)
+                    && Math.abs(enemyArray.get(i).getyLoc() - yLoc - 37.5) <= (150 * range)
+                    && enemyArray.get(i).getHealth() != 0) {
+                enemyArray.get(i).setHealth(enemyArray.get(i).getHealth() - damage);
+                if (attack == 0) {
+                    attackArray.add(2F);
+                    attackArray.add((float) Math.max(xLoc - (150 * range), 0));
+                    attackArray.add((float) Math.max(yLoc - (150 * range), 0));
+                    attackArray.add((float) (xLoc + (150 * (range + 1))));
+                    attackArray.add((float) (yLoc + (150 * (range + 1))));
+                    attack++;
+                }
             }
         }
         return enemyArray;

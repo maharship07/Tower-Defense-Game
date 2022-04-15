@@ -41,7 +41,7 @@ public class ConfigScreen extends AppCompatActivity {
                 finish();
             }
         });
-        }
+    }
     @SuppressLint("SetTextI18n")
     protected void setDifficulty(Button easyButton, Button normalButton, Button hardButton,
                                  AtomicInteger currDiff, TextView diffText) {

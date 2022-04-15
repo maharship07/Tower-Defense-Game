@@ -29,6 +29,16 @@ public class GameCanvas extends View {
     private int move = 0;
     private List<Integer> towerArray = new ArrayList<Integer>();
     private List<Enemy> enemyArray = new ArrayList<Enemy>();
+    private List<Float> attackArray = new ArrayList<>();
+
+    public List<Float> getAttackArray() {
+        return attackArray;
+    }
+
+    public void setAttackArray(List<Float> attackArray) {
+        this.attackArray = attackArray;
+    }
+
     public GameCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         Handler handler = new Handler();
@@ -67,12 +77,38 @@ public class GameCanvas extends View {
         move = 0;
         invalidate();
     }
+
+    public void drawAttack(float type, float towerx, float towery, float enemyx, float enemyy,
+                           Canvas canvas) {
+        Paint paint1 = new Paint();
+        Paint paint2 = new Paint();
+        Paint paint3 = new Paint();
+        paint1.setStrokeWidth(10);
+        paint3.setStrokeWidth(10);
+        paint1.setColor((255 << 16) | (255 << 8) | 255 | (255 << 24));
+        paint2.setColor((255) | (50 << 24));
+        paint3.setColor((255 << 16) | (255 << 8) | (255 << 24));
+        switch ((int) type) {
+        case 1:
+            canvas.drawLine(towerx, towery, enemyx, enemyy, paint1);
+            break;
+        case 2:
+            canvas.drawRect(towerx, towery, enemyx, enemyy, paint2);
+            break;
+        case 3:
+            canvas.drawLine(towerx, towery, enemyx, enemyy, paint3);
+            break;
+        default:
+            break;
+        }
+    }
+
     public List<Enemy> getEnemyArray() {
         return this.enemyArray;
     }
     public void drawEnemy(List<Enemy> enemyArray, Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor((255<<16)|(255<<24));
+        paint.setColor((255 << 16) | (255 << 24));
         for (int i = 0; i < enemyArray.size(); i++) {
             Enemy curr = enemyArray.get(i);
             float x = curr.getxLoc();
@@ -110,9 +146,9 @@ public class GameCanvas extends View {
             } else {
                 canvas.drawBitmap(enemy3, x, y, null);
             }
-            canvas.drawRect((float)(x-25), (float)(y+77.5),
-                    (float)(x+(100*curr.getHealthPercentage())),
-                    (float)(y+100), paint);
+            canvas.drawRect((float) (x - 25), (float) (y + 77.5),
+                    (float) (x + (100 * curr.getHealthPercentage())),
+                    (float) (y + 100), paint);
         }
     }
     @Override
@@ -121,6 +157,11 @@ public class GameCanvas extends View {
         for (int i = 0; i < towerArray.size(); i += 3) { //Draw each tower player has placed
             drawTower(towerArray.get(i), towerArray.get(i + 1), towerArray.get(i + 2), canvas);
         }
+        for (int i = 0; i < attackArray.size(); i += 5) {
+            drawAttack(attackArray.get(i), attackArray.get(i + 1), attackArray.get(i + 2),
+                    attackArray.get(i + 3), attackArray.get(i + 4), canvas);
+        }
+        attackArray.clear();
         drawEnemy(enemyArray, canvas);
     }
 }

@@ -14,7 +14,7 @@ public class Enemy1 implements Enemy {
 
     @Override
     public float getHealthPercentage() {
-        return ((float)health)/((float)20);
+        return ((float) health) / ((float) 20);
     }
 
     @Override
