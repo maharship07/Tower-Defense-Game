@@ -32,4 +32,11 @@ Maharshi Patel:
     gettingMoneyTest():
         This test will repeatedly hit the enemy with damage and then if it has no health remaining, the player will be able to get money to continue playing the game.
     
-         
+
+Terry Ma:
+    
+    testTowerInterfaceAbstraction():
+         This test ensures that towers declared of the type interface work properly with regards to their location. It does this by instantiating certain instances.
+
+    testEnemyHealthPercentage():
+         This test tests whether the enemies health percentages update accordingly with respect to their new health. The deltas are 0.02 to ensure no major floating point error occurs

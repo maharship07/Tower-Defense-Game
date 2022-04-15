@@ -154,4 +154,21 @@ public class M5Test {
         }
         assertEquals(20, money);
     }
+
+
+    @Test // M5 Test made by Terry Ma
+    public void testTowerInterfaceAbstraction() {
+        TowerInterface tower = new Tower1(2, 3);
+        assertEquals(tower.getxLoc(), 2);
+        assertEquals(tower.getyLoc(), 3);
+    }
+
+    @Test // M5 Test made by Terry Ma
+    public void testEnemyHealthPercentage() {
+        Enemy enemy = new Enemy1();
+        enemy.setHealth(6);
+        assertEquals(enemy.getHealthPercentage(), 0.3, 0.02);
+        enemy.setHealth(10);
+        assertEquals(enemy.getHealthPercentage(), 0.5, 0.02);
+    }
 }
