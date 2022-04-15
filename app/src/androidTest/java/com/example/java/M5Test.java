@@ -62,4 +62,35 @@ public class M5Test {
         assertNotEquals(enemyList.get(3).getHealthPercentage(), 1);
         assertEquals(enemyList.get(4).getHealthPercentage(), 1, 0);
     }
+
+    @Test // M5 Test by Manu Gupta
+    public void testTowerFactoryPosition() {
+        TowerFactory factory = new TowerFactory();
+        TowerInterface tower1 = factory.getTower(1, 2, 3);
+        TowerInterface tower2 = factory.getTower(2, 3, 4);
+        TowerInterface tower3 = factory.getTower(3, 5, 5);
+
+        assertEquals(tower1.getxLoc(),2 );
+        assertEquals(tower1.getyLoc(),3 );
+        assertEquals(tower2.getxLoc(),3 );
+        assertEquals(tower2.getyLoc(),4 );
+        assertEquals(tower3.getxLoc(),5 );
+        assertEquals(tower3.getyLoc(),5 );
+    }
+
+    @Test // M5 Test by Manu Gupta
+    public void testTowerFactoryType() {
+        TowerFactory factory = new TowerFactory();
+        Tower1 tower1 = (Tower1) factory.getTower(1, 2, 3);
+        Tower2 tower2 = (Tower2) factory.getTower(2, 3, 4);
+        Tower3 tower3 = (Tower3) factory.getTower(3, 5, 5);
+
+        assertEquals(tower1.getDamage(), 5);
+        assertEquals(tower1.getRange(), 2);
+        assertEquals(tower2.getDamage(), 5);
+        assertEquals(tower2.getRange(), 1);
+        assertEquals(tower3.getDamage(), 15);
+        assertEquals(tower3.getRange(), 5);
+
+    }
 }
