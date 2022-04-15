@@ -2,6 +2,7 @@ package com.example.java;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
@@ -91,6 +92,7 @@ public class M5Test {
         assertEquals(tower2.getRange(), 1);
         assertEquals(tower3.getDamage(), 15);
         assertEquals(tower3.getRange(), 5);
+    }
 
     @Test //M5 Test by Vedant Amin
     public void tower3AttackTest() {
@@ -103,5 +105,15 @@ public class M5Test {
         assertNotEquals(enemyList.get(2).getHealthPercentage(), 1);
         assertNotEquals(enemyList.get(3).getHealthPercentage(), 1);
         assertEquals(enemyList.get(4).getHealthPercentage(), 1, 0);
+    }
+
+    @Test //M5 Test by Maharshi Patel
+    public void enemyAttackMonumentTest() {
+        GameScreen scenario = activityRule2.getActivity();
+        scenario.initValues(0);
+        for (int i = 0; i < 5; i++) {
+            scenario.attack(new Enemy1());
+        }
+        assertTrue(scenario.getHealth() == 125);
     }
 }
