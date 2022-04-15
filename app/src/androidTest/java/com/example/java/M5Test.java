@@ -92,5 +92,16 @@ public class M5Test {
         assertEquals(tower3.getDamage(), 15);
         assertEquals(tower3.getRange(), 5);
 
+    @Test //M5 Test by Vedant Amin
+    public void tower3AttackTest() {
+        TowerInterface tower = new Tower3(1200, 450);
+        List<Enemy> enemyList = enemyListSetup();
+        List<Float> attackArray = new ArrayList<>();
+        tower.attack(enemyList, attackArray);
+        assertEquals(enemyList.get(0).getHealthPercentage(), 1, 0);
+        assertNotEquals(enemyList.get(1).getHealthPercentage(), 1);
+        assertNotEquals(enemyList.get(2).getHealthPercentage(), 1);
+        assertNotEquals(enemyList.get(3).getHealthPercentage(), 1);
+        assertEquals(enemyList.get(4).getHealthPercentage(), 1, 0);
     }
 }
