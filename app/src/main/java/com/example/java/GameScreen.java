@@ -22,6 +22,7 @@ public class GameScreen extends Activity {
     private List<Enemy> enemyArray;
     private int currentTower; //Number of tower player wishes to place
     private int enemyPlaced; //Stagger enemy spawns
+    private int enemyCount;
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -56,8 +57,8 @@ public class GameScreen extends Activity {
             pathCheck = 1;
         } else if (y == 150 && ((x >= 600 && x <= 1050) || (x >= 1350 && x <= 1650))) {
             pathCheck = 1;
-        } else if ((y >= 300 && y<=450) && (x == 150 || x == 600 || x == 1050
-                || x == 1350 ||x == 1650)) {
+        } else if ((y >= 300 && y <= 450) && (x == 150 || x == 600 || x == 1050
+                || x == 1350 || x == 1650)) {
             pathCheck = 1;
         } else if (y == 600 && ((x >= 150 && x <= 600) || (x >= 1050 && x <= 1350))) {
             pathCheck = 1;
@@ -73,7 +74,7 @@ public class GameScreen extends Activity {
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
         currentTower = 0;
-        enemyPlaced = 2;
+        enemyPlaced = 3;
         TextView healthCounter = findViewById(R.id.healthCounter); //Initializes health display
         TextView moneyCounter = findViewById(R.id.moneyCounter);
         TextView tower1cost = findViewById(R.id.Tower1Cost);
@@ -130,6 +131,7 @@ public class GameScreen extends Activity {
                         }
                     }
                 }
+                currentTower = 0;
                 return true;
             }
         });
@@ -139,7 +141,7 @@ public class GameScreen extends Activity {
             waveButton.setBackgroundColor(Color.RED);
             waveButton.setText("Wave 1");
             enemyArray.add(new Enemy1());
-            enemyWave(towermap, healthCounter, moneyCounter);
+            enemyWave(towermap, healthCounter, moneyCounter, diff);
         });
         waveButton.setEnabled(true);
     }
@@ -166,7 +168,8 @@ public class GameScreen extends Activity {
             throw new IllegalStateException("Unexpected value: " + diff);
         }
     }
-    public void enemyWave(GameCanvas towermap, TextView healthCounter, TextView moneyCounter) {
+    public void enemyWave(GameCanvas towermap, TextView healthCounter, TextView moneyCounter,
+                          int diff) {
         towermap.setEnemyArray(enemyArray);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -181,12 +184,14 @@ public class GameScreen extends Activity {
                         towermap.setEnemyArray(enemyArray);
                     }
                 }
+                List<Float> attackArray = towermap.getAttackArray();
                 for (int i = 0; i < towerArray.size(); i++) {
-                    towerArray.get(i).attack(enemyArray);
+                    towerArray.get(i).attack(enemyArray, attackArray);
                 }
                 removeDeadEnemies();
                 updateMoney(moneyCounter);
-                addEnemy();
+                addEnemy(diff);
+                towermap.setAttackArray(attackArray);
                 towermap.setEnemyArray(enemyArray);
                 handler.postDelayed(this, 1000);
                 if (health <= 0) {
@@ -194,7 +199,7 @@ public class GameScreen extends Activity {
                     gameOver();
                 }
             }
-        }, 1000);
+        }, 800);
     }
     public void attack(Enemy enemy) {
         health = Math.max(0, health - enemy.getDamage());
@@ -205,18 +210,24 @@ public class GameScreen extends Activity {
             if (enemyArray.get(i).getHealth() <= 0) {
                 money += enemyArray.get(i).getMoney();
                 enemyArray.remove(i);
+                i--;
             }
         }
     }
 
-    public void addEnemy() {
+    public void addEnemy(int diff) {
         if (enemyPlaced == 0) {
-            if (health % 2 == 0) {
-                enemyArray.add(new Enemy2());
-            } else {
+            if (enemyCount > (60 / (diff + 1))) {
                 enemyArray.add(new Enemy3());
+                enemyPlaced = 2;
+            } else if ((enemyCount > (30 / (diff + 1)))) {
+                enemyArray.add(new Enemy2());
+                enemyPlaced = 2;
+            } else {
+                enemyArray.add(new Enemy1());
+                enemyPlaced = 2;
             }
-            enemyPlaced = 2;
+            enemyCount++;
         } else {
             enemyPlaced--;
         }

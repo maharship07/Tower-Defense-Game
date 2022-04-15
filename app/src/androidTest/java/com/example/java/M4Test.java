@@ -121,14 +121,13 @@ public class M4Test  {
     public void testEnemyAddition() {
         GameScreen scenario = activityRule2.getActivity();
         scenario.setEnemyPlaced(0);
-        scenario.addEnemy();
+        scenario.addEnemy(2);
         scenario.setEnemyPlaced(0);
-        scenario.addEnemy();
-        scenario.attack(new Enemy1());
+        scenario.addEnemy(2);
         scenario.setEnemyPlaced(0);
-        scenario.addEnemy();
+        scenario.addEnemy(2);
         scenario.setEnemyPlaced(0);
-        scenario.addEnemy();
+        scenario.addEnemy(2);
         for (int i = 0; i < 2; i++) {
             assertTrue(scenario.getEnemyArray().get(i) instanceof Enemy2);
         }
