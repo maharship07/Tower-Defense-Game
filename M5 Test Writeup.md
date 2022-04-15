@@ -31,5 +31,11 @@ Maharshi Patel:
 
     gettingMoneyTest():
         This test will repeatedly hit the enemy with damage and then if it has no health remaining, the player will be able to get money to continue playing the game.
+
+Terry Ma:
+
+    tower3AttackRangeTest():
+        This test checks the whether the range of the tower attack is working. If the enemy is outside the range the health should not deplete.
     
-         
+    tower2AttackRangeTest():
+        This test checks the whether the range of the tower attack is working. If the enemy is outside the range the health should not deplete.

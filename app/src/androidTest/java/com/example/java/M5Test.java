@@ -38,6 +38,15 @@ public class M5Test {
         return enemyList;
     }
 
+    public List<Enemy> enemyListSetup1() {
+        List<Enemy> enemyList = new ArrayList<>();
+        enemyList.add(new Enemy1());
+
+        enemyList.get(0).setxLoc(0);
+        enemyList.get(0).setyLoc(0);
+        return enemyList;
+    }
+
     @Test //M5 Test by Ian Westcott
     public void tower1AttackTest() {
         TowerInterface tower = new Tower1(1200, 450);
@@ -153,5 +162,23 @@ public class M5Test {
             money = enemy2.getMoney();
         }
         assertEquals(20, money);
+    }
+
+    @Test //M5 Test by Terry Ma
+    public void tower3AttackRangeTest() {
+        TowerInterface tower = new Tower3(1200, 450);
+        List<Enemy> enemyList = enemyListSetup1();
+        List<Float> attackArray = new ArrayList<>();
+        List<Enemy> enemyArray = tower.attack(enemyList, attackArray);
+        assertEquals(enemyList, enemyArray);
+    }
+
+    @Test //M5 Test by Terry Ma
+    public void tower2AttackRangeTest() {
+        TowerInterface tower = new Tower2(1200, 450);
+        List<Enemy> enemyList = enemyListSetup1();
+        List<Float> attackArray = new ArrayList<>();
+        List<Enemy> enemyArray = tower.attack(enemyList, attackArray);
+        assertEquals(enemyList, enemyArray);
     }
 }
