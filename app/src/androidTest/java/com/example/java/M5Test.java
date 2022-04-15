@@ -107,6 +107,28 @@ public class M5Test {
         assertEquals(enemyList.get(4).getHealthPercentage(), 1, 0);
     }
 
+    @Test
+    public void testRemoveEnemy() {
+        GameScreen gs = activityRule2.getActivity();
+        Enemy1 enemy1 = new Enemy1();
+        Enemy2 enemy2 = new Enemy2();
+        Enemy3 enemy3 = new Enemy3();
+        gs.getEnemyArray().add(enemy1);
+        gs.getEnemyArray().add(enemy2);
+        gs.getEnemyArray().add(enemy3);
+        enemy1.setHealth(50);
+        Tower1 tower = new Tower1(1200, 450);
+        for (int i = 0; i < 10; i++) {
+            enemy1.setHealth(enemy1.getHealth() - tower.getDamage());
+        }
+        for (int i = 0; i < gs.getEnemyArray().size(); i++) {
+            if (gs.getEnemyArray().get(i).getHealth() == 0) {
+                gs.removeDeadEnemies();
+            }
+        }
+        assertEquals(2, gs.getEnemyArray().size());
+    }
+
     @Test //M5 Test by Maharshi Patel
     public void enemyAttackMonumentTest() {
         GameScreen scenario = activityRule2.getActivity();

@@ -205,7 +205,7 @@ public class GameScreen extends Activity {
         health = Math.max(0, health - enemy.getDamage());
     }
 
-    private void removeDeadEnemies() {
+    public void removeDeadEnemies() {
         for (int i = 0; i < enemyArray.size(); i++) {
             if (enemyArray.get(i).getHealth() <= 0) {
                 money += enemyArray.get(i).getMoney();
