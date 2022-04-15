@@ -100,7 +100,7 @@ public class M5Test {
         List<Enemy> enemyList = enemyListSetup();
         List<Float> attackArray = new ArrayList<>();
         tower.attack(enemyList, attackArray);
-        assertEquals(enemyList.get(0).getHealthPercentage(), 1, 0);
+        assertEquals(enemyList.get(0).getHealthPercentage(), 0.25, 0);
         assertNotEquals(enemyList.get(1).getHealthPercentage(), 1);
         assertNotEquals(enemyList.get(2).getHealthPercentage(), 1);
         assertNotEquals(enemyList.get(3).getHealthPercentage(), 1);
