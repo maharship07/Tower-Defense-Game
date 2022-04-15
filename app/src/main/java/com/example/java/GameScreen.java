@@ -37,6 +37,14 @@ public class GameScreen extends Activity {
         this.health = health;
     }
 
+    public int getMoney() {
+        return this.money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     public List<Enemy> getEnemyArray() {
         return enemyArray;
     }

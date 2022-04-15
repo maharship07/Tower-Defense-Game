@@ -136,6 +136,22 @@ public class M5Test {
         for (int i = 0; i < 5; i++) {
             scenario.attack(new Enemy1());
         }
-        assertTrue(scenario.getHealth() == 125);
+        assertEquals(125, scenario.getHealth());
+        assertEquals(200, scenario.getMoney());
+    }
+
+    @Test //M5 Test by Maharshi Patel
+    public void gettingMoneyTest() {
+        Enemy2 enemy2 = new Enemy2();
+
+        Tower1 tower = new Tower1(1200, 450);
+        int money = 0;
+        for (int i = 0; i < 8; i++) {
+            enemy2.setHealth(enemy2.getHealth() - tower.getDamage());
+        }
+        if (enemy2.getHealth() <= 0) {
+            money = enemy2.getMoney();
+        }
+        assertEquals(20, money);
     }
 }

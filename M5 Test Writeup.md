@@ -19,5 +19,12 @@ Vedant Amin:
     
     testRemoveEnemies():
         This test checks the functionality of removeDeadEnemies() which basically removes the enemies once its health reaches 0. It does that by creating a list of dummy enemies and killing some of them and checking if removeDeadEnemies() removes it from the screen.
+
+Maharshi Patel:
+    enemyAttackMonumentTest():
+        This test checks setting difficulty level, and enemy attacking the monument to check if the health depletes. In addition, it checks the money stays the same since no towers are placed.
+
+    gettingMoneyTest():
+        This test will repeatedly hit the enemy with damage and then if it has no health remaining, the player will be able to get money to continue playing the game.
     
          
