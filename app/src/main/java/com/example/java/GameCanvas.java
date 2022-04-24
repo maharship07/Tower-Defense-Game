@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -16,10 +17,16 @@ import java.util.List;
 public class GameCanvas extends View {
     private final Bitmap tower1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.tower_1_bitmap), 150, 150, true);
+    private final Bitmap tower1Upgraded = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
+            getResources(), R.drawable.tower_1_upgraded), 150, 150, true);
     private final Bitmap tower2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.tower_2_bitmap), 150, 150, true);
+    private final Bitmap tower2Upgraded = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
+            getResources(), R.drawable.tower_2_upgraded), 150, 150, true);
     private final Bitmap tower3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.tower_3_bitmap), 150, 150, true);
+    private final Bitmap tower3Upgraded = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
+            getResources(), R.drawable.tower_3_upgraded), 150, 150, true);
     private final Bitmap enemy1 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.enemy_1), 75, 75, true);
     private final Bitmap enemy2 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
@@ -27,9 +34,10 @@ public class GameCanvas extends View {
     private final Bitmap enemy3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.enemy_3), 75, 75, true);
     private int move = 0;
-    private List<Integer> towerArray = new ArrayList<Integer>();
+    private List<TowerInterface> towerArray = new ArrayList<>();
     private List<Enemy> enemyArray = new ArrayList<Enemy>();
     private List<Float> attackArray = new ArrayList<>();
+    private List<Boolean> upgraded = new ArrayList<>();
 
     public List<Float> getAttackArray() {
         return attackArray;
@@ -49,29 +57,44 @@ public class GameCanvas extends View {
         }, 1000);
     }
     //Draw tower at xy coordinates
-    public void drawTower(int x, int y, int tower, Canvas canvas) {
-        switch (tower) {
-        case 1:
-            canvas.drawBitmap(tower1, (float) x, (float) y, null);
-            break;
-        case 2:
-            canvas.drawBitmap(tower2, (float) x, (float) y, null);
-            break;
-        case 3:
-            canvas.drawBitmap(tower3, (float) x, (float) y, null);
-            break;
-        default:
-            break;
+    public void drawTower(int x, int y, int tower, boolean upgraded, Canvas canvas) {
+        if (!upgraded) {
+            switch (tower) {
+                case 1:
+                    canvas.drawBitmap(tower1, (float) x, (float) y, null);
+                    break;
+                case 2:
+                    canvas.drawBitmap(tower2, (float) x, (float) y, null);
+                    break;
+                case 3:
+                    canvas.drawBitmap(tower3, (float) x, (float) y, null);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (tower) {
+                case 1:
+                    canvas.drawBitmap(tower1Upgraded, (float) x, (float) y, null);
+                    break;
+                case 2:
+                    canvas.drawBitmap(tower2Upgraded, (float) x, (float) y, null);
+                    break;
+                case 3:
+                    canvas.drawBitmap(tower3Upgraded, (float) x, (float) y, null);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     //Add new tower to drawing array
-    public void addTower(int x, int y, int tower) {
-        towerArray.add(x);
-        towerArray.add(y);
+    public void addTower(TowerInterface tower) {
         towerArray.add(tower);
         move = 1;
         invalidate(); //Redraw canvas when tower is added
     }
+
     public void setEnemyArray(List<Enemy> enemyArray) {
         this.enemyArray = enemyArray;
         move = 0;
@@ -154,8 +177,11 @@ public class GameCanvas extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0; i < towerArray.size(); i += 3) { //Draw each tower player has placed
-            drawTower(towerArray.get(i), towerArray.get(i + 1), towerArray.get(i + 2), canvas);
+        for (int i = 0; i < towerArray.size(); i += 1) { //Draw each tower player has placed
+            drawTower(towerArray.get(i).getxLoc(),
+                    towerArray.get(i).getyLoc(),
+                    towerArray.get(i).getTower(),
+                    towerArray.get(i).getUpgrade(), canvas);
         }
         for (int i = 0; i < attackArray.size(); i += 5) {
             drawAttack(attackArray.get(i), attackArray.get(i + 1), attackArray.get(i + 2),

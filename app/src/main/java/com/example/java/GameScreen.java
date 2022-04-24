@@ -88,6 +88,9 @@ public class GameScreen extends Activity {
         TextView tower1cost = findViewById(R.id.Tower1Cost);
         TextView tower2cost = findViewById(R.id.Tower2Cost);
         TextView tower3cost = findViewById(R.id.Tower3Cost);
+        TextView upgrade1cost = findViewById(R.id.tower1Cost2);
+        TextView upgrade2cost = findViewById(R.id.tower2Cost2);
+        TextView upgrade3cost = findViewById(R.id.tower3Cost2);
         ImageButton tower1button = findViewById(R.id.tower1button);
         ImageButton tower2button = findViewById(R.id.tower2button);
         ImageButton tower3button = findViewById(R.id.tower3button);
@@ -103,6 +106,10 @@ public class GameScreen extends Activity {
         tower1cost.setText("Price: $" + Tower1.initCost(diff));
         tower2cost.setText("Price: $" + Tower2.initCost(diff));
         tower3cost.setText("Price: $" + Tower3.initCost(diff));
+        upgrade1cost.setText("Upgrade: $" + (int)(Tower1.initCost(diff) * 0.7));
+        upgrade2cost.setText("Upgrade: $" + (int)(Tower2.initCost(diff) * 0.7));
+        upgrade3cost.setText("Upgrade: $" + (int)(Tower3.initCost(diff) * 0.7));
+
         updateHealth(healthCounter); //sets health display to starting health
         updateMoney(moneyCounter);
         tower1button.setOnClickListener(l -> {
@@ -125,16 +132,24 @@ public class GameScreen extends Activity {
                         if (x == towerArray.get(i).getxLoc()
                                 && y == towerArray.get(i).getyLoc()) {
                             currentTower = 0; //If tower exists in box, do not place tower
+
+                            //Apply Upgrade if possible
+                            Upgrade upgrade = new UpgradeDamage();
+                            if (!towerArray.get(i).getUpgrade() && money >= TowerFactory.getTowerCost(towerArray.get(i).getTower(), diff) * 0.7) {
+                                money -= TowerFactory.getTowerCost(towerArray.get(i).getTower(), diff) * 0.7;
+                                upgrade.upgrade(towerArray.get(i));
+                            }
+
                         }
                     }
 
-                    int pathCheck = getPathCheck(x, y);
-                    if (pathCheck == 0) {
-                        if (money >= TowerFactory.getTowerCost(currentTower, diff)) {
+                    int pathCheck = getPathCheck(x, y); //check if tower is on path
+                    if (pathCheck == 0 && currentTower != 0) { // if not on path and valid
+                        if (money >= TowerFactory.getTowerCost(currentTower, diff)) { //if enough money
                             money -= TowerFactory.getTowerCost(currentTower, diff);
                             updateMoney(moneyCounter);
-                            towermap.addTower(x, y, currentTower);
                             TowerInterface newTower = TowerFactory.getTower(currentTower, x, y);
+                            towermap.addTower(newTower);
                             towerArray.add(newTower);
                         }
                     }

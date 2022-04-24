@@ -8,6 +8,9 @@ public class Tower3 implements TowerInterface {
     private int cooldown = 0;
     private int xLoc;
     private int yLoc;
+    private boolean isUpgraded = false;
+    private int tower = 3;
+
     public Tower3(int x, int y) {
         xLoc = x;
         yLoc = y;
@@ -59,6 +62,19 @@ public class Tower3 implements TowerInterface {
         this.damage = damage;
     }
 
+    @Override
+    public void setUpgrade(boolean upgrade) {
+        this.isUpgraded = upgrade;
+    }
+
+    @Override
+    public boolean getUpgrade() {
+        return isUpgraded;
+    }
+
+    public int getTower() { return tower; }
+
+
     public int getRange() {
         return range;
     }
@@ -82,4 +98,6 @@ public class Tower3 implements TowerInterface {
     public void setyLoc(int yLoc) {
         this.yLoc = yLoc;
     }
+
+
 }
