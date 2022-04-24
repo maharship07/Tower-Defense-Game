@@ -7,10 +7,28 @@ public class Tower2 implements TowerInterface {
     private int range = 1;
     private int xLoc;
     private int yLoc;
+    private boolean isUpgraded = false;
+    private int tower = 2;
+
     public Tower2(int x, int y) {
         xLoc = x;
         yLoc = y;
     }
+
+    @Override
+    public void setUpgrade(boolean upgrade) {
+        this.isUpgraded = upgrade;
+    }
+
+    @Override
+    public boolean getUpgrade() {
+        return isUpgraded;
+    }
+
+    public int getTower() {
+        return 2;
+    }
+
 
     @Override
     public List<Enemy> attack(List<Enemy> enemyArray, List<Float> attackArray) {

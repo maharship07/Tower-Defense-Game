@@ -7,6 +7,12 @@ public interface TowerInterface {
 
     int getxLoc();
     int getyLoc();
+    public int getDamage();
+    public void setDamage(int damage);
+    public void setUpgrade(boolean upgrade);
+    public boolean getUpgrade();
+    public int getTower();
+
     int DAMAGE = 0;
     int RANGE = 1;
 
