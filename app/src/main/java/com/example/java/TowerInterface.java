@@ -8,6 +8,8 @@ public interface TowerInterface {
     int getxLoc();
     int getyLoc();
     public int getDamage();
+    public int getRange();
+    public void setRange(int range);
     public void setDamage(int damage);
     public void setUpgrade(boolean upgrade);
     public boolean getUpgrade();

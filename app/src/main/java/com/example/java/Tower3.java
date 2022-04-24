@@ -16,6 +16,7 @@ public class Tower3 implements TowerInterface {
         yLoc = y;
     }
 
+
     @Override
     public List<Enemy> attack(List<Enemy> enemyArray, List<Float> attackArray) {
         if (cooldown == 2) {
