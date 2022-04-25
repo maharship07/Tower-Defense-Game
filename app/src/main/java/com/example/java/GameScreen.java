@@ -174,11 +174,13 @@ public class GameScreen extends Activity {
         finish();
     }
 
-    public void winGame() {
+  /*  public void winGame() {
         Intent i = new Intent(this, GameWinScreen.class);
         startActivity(i);
         finish();
     }
+ */
+
 
     public void initValues(int diff) {
         switch (diff) { //initializes game parameters based on difficulty parameter
