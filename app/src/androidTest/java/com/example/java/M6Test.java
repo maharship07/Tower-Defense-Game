@@ -1,7 +1,10 @@
 package com.example.java;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
@@ -42,5 +45,30 @@ public class M6Test {
         assertEquals(tower.getRange(), 2);
     }
 
+    @Test //M6 Test made by Vedant Amin
+    public void testGameWinScreen() {
+        FinalBoss finalBoss = new FinalBoss();
+        Tower1 tower = new Tower1(1200, 450);
+        int bossHealth = finalBoss.getHealth();
+        int towerDamage = tower.getDamage();
+        for(int i = 0; i < 60; i++) {
+            bossHealth -= towerDamage;
+        }
+        if (bossHealth == 0) {
+            onView(withId(R.layout.game_win_screen));
+            assertTrue(true);
+        }
+    }
+
+    @Test //M6 Test made by Vedant Amin
+    public void bossDamageMonument() {
+        int monumentHealth = 500;
+        FinalBoss finalBoss = new FinalBoss();
+        int bossDamage = finalBoss.getDamage();
+        for (int i = 0; i < 5; i++) {
+            monumentHealth -= bossDamage;
+        }
+        assertEquals(0, monumentHealth);
+    }
 
 }
