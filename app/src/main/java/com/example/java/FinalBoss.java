@@ -1,8 +1,8 @@
 package com.example.java;
 
 public class FinalBoss implements Enemy {
-    private int health = 300;
-    private int damage = 100;
+    private int health = 250;
+    private int damage = 150;
     private float xLoc;
     private float yLoc;
     private int pathDir = 1;
@@ -14,7 +14,7 @@ public class FinalBoss implements Enemy {
 
     @Override
     public float getHealthPercentage() {
-        return ((float) health) / ((float) 30);
+        return ((float) health) / ((float) 250);
     }
 
     @Override
