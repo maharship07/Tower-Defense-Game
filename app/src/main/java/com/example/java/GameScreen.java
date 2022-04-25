@@ -271,14 +271,14 @@ public class GameScreen extends Activity {
     public void addEnemy(int diff) {
         if (finalBoss == null) {
             if (enemyPlaced == 0) {
-                if (enemyCount > 120 / (diff + 20)) {
+                if (enemyCount > 120 / (diff + 1)) {
                     finalBoss = new FinalBoss();
                     enemyArray.add(finalBoss);
                     enemyPlaced = 2;
-                } else if (enemyCount > (60 / (diff + 20))) {
+                } else if (enemyCount > (60 / (diff + 1))) {
                     enemyArray.add(new Enemy3());
                     enemyPlaced = 2;
-                } else if ((enemyCount > (30 / (diff + 20)))) {
+                } else if ((enemyCount > (30 / (diff + 1)))) {
                     enemyArray.add(new Enemy2());
                     enemyPlaced = 2;
                 } else {
