@@ -168,7 +168,7 @@
     <com.example.java.GameCanvas
         android:id="@+id/gamecanvas"
         android:layout_width="655dp"
-        android:layout_height="327dp"
+        android:layout_height="340dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
