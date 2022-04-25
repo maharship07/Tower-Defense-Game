@@ -31,11 +31,15 @@ public class GameOverScreen extends AppCompatActivity {
                         extras.getInt("numEnemiesKilled"));
             }
         }
-
-
         Button restart = findViewById(R.id.restartButton);
         restart.setOnClickListener(l -> {
             moveToStartScreen();
+        });
+
+        Button quit = findViewById(R.id.quit);
+        quit.setOnClickListener(l -> {
+            finish();
+            System.exit(0);
         });
     }
     public void moveToStartScreen() {
