@@ -50,6 +50,22 @@ public class GameScreen extends Activity {
         this.money = money;
     }
 
+    public int getNumEnemiesKilled() {
+        return numEnemiesKilled;
+    } //Testing Method
+
+    public int getMoneySpent() {
+        return moneySpent;
+    } //Testing Method
+
+    public int getTotalDamageTaken() {
+        return totalDamageTaken;
+    } //Testing Method
+
+    public void setEnemyArray(List<Enemy> enemyList) {
+        enemyArray = enemyList;
+    } //Testing Method
+
     public List<Enemy> getEnemyArray() {
         return enemyArray;
     }
@@ -274,7 +290,7 @@ public class GameScreen extends Activity {
                 if (enemyCount > 120 / (diff + 1)) {
                     finalBoss = new FinalBoss();
                     enemyArray.add(finalBoss);
-                    enemyPlaced = 2;
+                    enemyPlaced = 1;
                 } else if (enemyCount > (60 / (diff + 1))) {
                     enemyArray.add(new Enemy3());
                     enemyPlaced = 2;
@@ -283,7 +299,7 @@ public class GameScreen extends Activity {
                     enemyPlaced = 2;
                 } else {
                     enemyArray.add(new Enemy1());
-                    enemyPlaced = 2;
+                    enemyPlaced = 3;
                 }
                 enemyCount++;
             } else {
