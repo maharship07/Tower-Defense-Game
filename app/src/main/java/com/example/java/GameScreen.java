@@ -173,6 +173,13 @@ public class GameScreen extends Activity {
         startActivity(i);
         finish();
     }
+
+    public void winGame() {
+        Intent i = new Intent(this, GameWinScreen.class);
+        startActivity(i);
+        finish();
+    }
+
     public void initValues(int diff) {
         switch (diff) { //initializes game parameters based on difficulty parameter
         case 0:
@@ -240,7 +247,11 @@ public class GameScreen extends Activity {
 
     public void addEnemy(int diff) {
         if (enemyPlaced == 0) {
-            if (enemyCount > (60 / (diff + 1))) {
+            if (enemyCount > 120 / (diff + 1)) {
+                enemyArray.add(new FinalBoss());
+                enemyPlaced = 2;
+            }
+            else if (enemyCount > (60 / (diff + 1))) {
                 enemyArray.add(new Enemy3());
                 enemyPlaced = 2;
             } else if ((enemyCount > (30 / (diff + 1)))) {
