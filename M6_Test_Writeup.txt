@@ -4,13 +4,5 @@ Manu Gupta:
         also checks what happens when an upgrade is attempted on a tower twice.
 
     upgradeRangeTest()
-       This test checks whether using the range upgrade will double the range as expected. Since towers can only be upgraded once, this test also verifies
+       This test checks whetheer using the range upgrade will double the range as expected. Since towers can only be upgraded once, this test also verifies
        that the tower doesn't upgrade its range again after its been doubled once already.
-
-Vedant Amin:
-    testGameWinScreen():
-        This tests checks whether the game transitions to the game_win_screen when the towers eliminates the final boss.
-
-    bossDamageMonument():
-        This tests checks if the final boss can attack the monument and whether the monument takes damages or not and after attacking
-        if the health decreases to zero.
