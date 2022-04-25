@@ -18,31 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.164" />
 
-    <TextView
-        android:id="@+id/healthCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:text="@string/health"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
-
-    <TextView
-        android:id="@+id/moneyCounter"
-        android:layout_width="54dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/money"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthCounter" />
-
     <Button
         android:id="@+id/restartButton"
         android:layout_width="wrap_content"
@@ -52,19 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.396" />
-
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/quit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.452" />
 
     <TextView
         android:id="@+id/restartText"
@@ -76,7 +39,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintVertical_bias="0.931" />
+
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_win"
+        app:layout_constraintVertical_bias="0.703" />
 
     <TextView
         android:id="@+id/winText"
@@ -86,10 +61,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintVertical_bias="0.963" />
 
     <TextView
         android:id="@+id/numEnemiesKilled"
@@ -99,10 +74,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.156" />
 
     <TextView
         android:id="@+id/moneySpent"
@@ -112,10 +87,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <TextView
         android:id="@+id/totalDamageTaken"
@@ -125,9 +100,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_win"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.379" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
