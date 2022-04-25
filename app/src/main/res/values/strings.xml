@@ -16,6 +16,9 @@
     <string name="price2">Price: $</string>
     <string name="price3">Price: $</string>
     <string name="game_over_text">GAME OVER</string>
+    <string name="game_win">YOU WON!!!</string>
     <string name="textview">Click restart to return to title screen</string>
+    <string name="win_text">Click quit to exit the game</string>
     <string name="restart">Restart</string>
+    <string name="quit">Quit</string>
 </resources>

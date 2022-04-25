@@ -19,6 +19,10 @@
             android:screenOrientation="sensorPortrait"
             android:exported="false" />
         <activity
+            android:name=".GameWinScreen"
+            android:screenOrientation="sensorPortrait"
+            android:exported="false" />
+        <activity
             android:name=".GameScreen"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
