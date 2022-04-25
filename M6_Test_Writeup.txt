@@ -1,8 +1,0 @@
-Manu Gupta:
-    upgradeDamageTest():
-        This test checks whether upgrading a tower increases the damage as expected. Because towers should only be able to be upgraded once, this test
-        also checks what happens when an upgrade is attempted on a tower twice.
-
-    upgradeRangeTest()
-       This test checks whetheer using the range upgrade will double the range as expected. Since towers can only be upgraded once, this test also verifies
-       that the tower doesn't upgrade its range again after its been doubled once already.
