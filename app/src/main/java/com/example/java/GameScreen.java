@@ -23,6 +23,8 @@ public class GameScreen extends Activity {
     private int currentTower; //Number of tower player wishes to place
     private int enemyPlaced; //Stagger enemy spawns
     private int enemyCount;
+    private FinalBoss finalBoss = null;
+    private boolean gameWon = false;
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -173,6 +175,15 @@ public class GameScreen extends Activity {
         startActivity(i);
         finish();
     }
+
+    public void winGame() {
+        Intent i = new Intent(this, GameWinScreen.class);
+        startActivity(i);
+        finish();
+    }
+
+
+
     public void initValues(int diff) {
         switch (diff) { //initializes game parameters based on difficulty parameter
         case 0:
@@ -221,6 +232,12 @@ public class GameScreen extends Activity {
                     handler.removeCallbacks(this);
                     gameOver();
                 }
+
+                if (gameWon == false && finalBoss != null && finalBoss.getHealth() <= 0) {
+                    winGame();
+                    gameWon = true;
+                }
+
             }
         }, 800);
     }
@@ -239,20 +256,26 @@ public class GameScreen extends Activity {
     }
 
     public void addEnemy(int diff) {
-        if (enemyPlaced == 0) {
-            if (enemyCount > (60 / (diff + 1))) {
-                enemyArray.add(new Enemy3());
-                enemyPlaced = 2;
-            } else if ((enemyCount > (30 / (diff + 1)))) {
-                enemyArray.add(new Enemy2());
-                enemyPlaced = 2;
+        if (finalBoss == null) {
+            if (enemyPlaced == 0) {
+                if (enemyCount > 120 / (diff + 1)) {
+                    finalBoss = new FinalBoss();
+                    enemyArray.add(finalBoss);
+                    enemyPlaced = 2;
+                } else if (enemyCount > (60 / (diff + 1))) {
+                    enemyArray.add(new Enemy3());
+                    enemyPlaced = 2;
+                } else if ((enemyCount > (30 / (diff + 1)))) {
+                    enemyArray.add(new Enemy2());
+                    enemyPlaced = 2;
+                } else {
+                    enemyArray.add(new Enemy1());
+                    enemyPlaced = 2;
+                }
+                enemyCount++;
             } else {
-                enemyArray.add(new Enemy1());
-                enemyPlaced = 2;
+                enemyPlaced--;
             }
-            enemyCount++;
-        } else {
-            enemyPlaced--;
         }
     }
 }
