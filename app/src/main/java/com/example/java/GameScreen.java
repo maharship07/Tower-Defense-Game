@@ -23,6 +23,11 @@ public class GameScreen extends Activity {
     private int currentTower; //Number of tower player wishes to place
     private int enemyPlaced; //Stagger enemy spawns
     private int enemyCount;
+    private FinalBoss finalBoss = null;
+    private boolean gameWon = false;
+    private int numEnemiesKilled = 0;
+    private int moneySpent = 0;
+    private int totalDamageTaken = 0;
 
     @SuppressLint("SetTextI18n")
     private void updateHealth(TextView healthCounter) {
@@ -137,6 +142,7 @@ public class GameScreen extends Activity {
                             Upgrade upgrade = new UpgradeDamage();
                             if (!towerArray.get(i).getUpgrade() && money >= TowerFactory.getTowerCost(towerArray.get(i).getTower(), diff) * 0.7) {
                                 money -= TowerFactory.getTowerCost(towerArray.get(i).getTower(), diff) * 0.7;
+                                moneySpent += TowerFactory.getTowerCost(towerArray.get(i).getTower(), diff) * 0.7;
                                 upgrade.upgrade(towerArray.get(i));
                             }
 
@@ -147,6 +153,7 @@ public class GameScreen extends Activity {
                     if (pathCheck == 0 && currentTower != 0) { // if not on path and valid
                         if (money >= TowerFactory.getTowerCost(currentTower, diff)) { //if enough money
                             money -= TowerFactory.getTowerCost(currentTower, diff);
+                            moneySpent += TowerFactory.getTowerCost(currentTower, diff);
                             updateMoney(moneyCounter);
                             TowerInterface newTower = TowerFactory.getTower(currentTower, x, y);
                             towermap.addTower(newTower);
@@ -170,9 +177,24 @@ public class GameScreen extends Activity {
     }
     public void gameOver() {
         Intent i = new Intent(this, GameOverScreen.class);
+        i.putExtra("numEnemiesKilled", numEnemiesKilled);
+        i.putExtra("moneySpent", moneySpent);
+        i.putExtra("totalDamageTaken", totalDamageTaken);
         startActivity(i);
         finish();
     }
+
+    public void winGame() {
+        Intent i = new Intent(this, GameWinScreen.class);
+        i.putExtra("numEnemiesKilled", numEnemiesKilled);
+        i.putExtra("moneySpent", moneySpent);
+        i.putExtra("totalDamageTaken", totalDamageTaken);
+        startActivity(i);
+        finish();
+    }
+
+
+
     public void initValues(int diff) {
         switch (diff) { //initializes game parameters based on difficulty parameter
         case 0:
@@ -221,17 +243,25 @@ public class GameScreen extends Activity {
                     handler.removeCallbacks(this);
                     gameOver();
                 }
+
+                if (gameWon == false && finalBoss != null && finalBoss.getHealth() <= 0) {
+                    winGame();
+                    gameWon = true;
+                }
+
             }
         }, 800);
     }
     public void attack(Enemy enemy) {
         health = Math.max(0, health - enemy.getDamage());
+        totalDamageTaken += enemy.getDamage();
     }
 
     public void removeDeadEnemies() {
         for (int i = 0; i < enemyArray.size(); i++) {
             if (enemyArray.get(i).getHealth() <= 0) {
                 money += enemyArray.get(i).getMoney();
+                numEnemiesKilled += 1;
                 enemyArray.remove(i);
                 i--;
             }
@@ -239,20 +269,26 @@ public class GameScreen extends Activity {
     }
 
     public void addEnemy(int diff) {
-        if (enemyPlaced == 0) {
-            if (enemyCount > (60 / (diff + 1))) {
-                enemyArray.add(new Enemy3());
-                enemyPlaced = 2;
-            } else if ((enemyCount > (30 / (diff + 1)))) {
-                enemyArray.add(new Enemy2());
-                enemyPlaced = 2;
+        if (finalBoss == null) {
+            if (enemyPlaced == 0) {
+                if (enemyCount > 120 / (diff + 1)) {
+                    finalBoss = new FinalBoss();
+                    enemyArray.add(finalBoss);
+                    enemyPlaced = 2;
+                } else if (enemyCount > (60 / (diff + 1))) {
+                    enemyArray.add(new Enemy3());
+                    enemyPlaced = 2;
+                } else if ((enemyCount > (30 / (diff + 1)))) {
+                    enemyArray.add(new Enemy2());
+                    enemyPlaced = 2;
+                } else {
+                    enemyArray.add(new Enemy1());
+                    enemyPlaced = 2;
+                }
+                enemyCount++;
             } else {
-                enemyArray.add(new Enemy1());
-                enemyPlaced = 2;
+                enemyPlaced--;
             }
-            enemyCount++;
-        } else {
-            enemyPlaced--;
         }
     }
 }

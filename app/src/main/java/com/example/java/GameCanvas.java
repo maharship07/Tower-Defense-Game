@@ -33,6 +33,8 @@ public class GameCanvas extends View {
             getResources(), R.drawable.enemy_2), 75, 75, true);
     private final Bitmap enemy3 = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
             getResources(), R.drawable.enemy_3), 75, 75, true);
+    private final Bitmap finalBoss = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
+            getResources(), R.drawable.final_boss), 75, 75, true);
     private int move = 0;
     private List<TowerInterface> towerArray = new ArrayList<>();
     private List<Enemy> enemyArray = new ArrayList<Enemy>();
@@ -166,8 +168,10 @@ public class GameCanvas extends View {
                 canvas.drawBitmap(enemy1, x, y, null);
             } else if (curr instanceof Enemy2) {
                 canvas.drawBitmap(enemy2, x, y, null);
-            } else {
+            } else if (curr instanceof Enemy3) {
                 canvas.drawBitmap(enemy3, x, y, null);
+            } else {
+                canvas.drawBitmap(finalBoss, x, y, null);
             }
             canvas.drawRect((float) (x - 25), (float) (y + 77.5),
                     (float) (x + (100 * curr.getHealthPercentage())),
