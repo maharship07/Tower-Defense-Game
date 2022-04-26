@@ -8,15 +8,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GameOverScreen extends AppCompatActivity {
+public class GameWinScreen extends AppCompatActivity {
+
     @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_over_screen);
-
-        TextView numEnemiesKilledStat = findViewById(R.id.numEnemiesKilledOver);
-        TextView moneySpentStat = findViewById(R.id.moneySpentOver);
-        TextView totalDamageTakenStat = findViewById(R.id.totalDamageTakenOver);
+        setContentView(R.layout.game_win_screen);
+        TextView numEnemiesKilledStat = findViewById(R.id.numEnemiesKilled);
+        TextView moneySpentStat = findViewById(R.id.moneySpent);
+        TextView totalDamageTakenStat = findViewById(R.id.totalDamageTaken);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -37,7 +37,6 @@ public class GameOverScreen extends AppCompatActivity {
         restart.setOnClickListener(l -> {
             moveToStartScreen();
         });
-
         Button quit = findViewById(R.id.quit);
         quit.setOnClickListener(l -> {
             finish();

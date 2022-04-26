@@ -2,7 +2,6 @@ package com.example.java;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
@@ -80,12 +79,12 @@ public class M5Test {
         TowerInterface tower2 = factory.getTower(2, 3, 4);
         TowerInterface tower3 = factory.getTower(3, 5, 5);
 
-        assertEquals(tower1.getxLoc(),2 );
-        assertEquals(tower1.getyLoc(),3 );
-        assertEquals(tower2.getxLoc(),3 );
-        assertEquals(tower2.getyLoc(),4 );
-        assertEquals(tower3.getxLoc(),5 );
-        assertEquals(tower3.getyLoc(),5 );
+        assertEquals(tower1.getxLoc(), 2);
+        assertEquals(tower1.getyLoc(), 3);
+        assertEquals(tower2.getxLoc(), 3);
+        assertEquals(tower2.getyLoc(), 4);
+        assertEquals(tower3.getxLoc(), 5);
+        assertEquals(tower3.getyLoc(), 5);
     }
 
     @Test // M5 Test by Manu Gupta
