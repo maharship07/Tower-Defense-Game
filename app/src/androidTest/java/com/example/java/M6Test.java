@@ -132,4 +132,24 @@ public class M6Test {
             assertEquals(0, gameScreen.getMoney());
         }
     }
+
+    @Test // M6 Test made by Terry Ma
+    public void testBossHealth() {
+        Tower3 tower = new Tower3(0, 0);
+        int towerDamage = tower.getDamage();
+        FinalBoss finalBoss = new FinalBoss();
+        int bossHealth = finalBoss.getHealth();
+
+        bossHealth -= towerDamage;
+        assertEquals(235, bossHealth);
+    }
+
+    @Test // M6 Test made by Terry Ma
+    public void testBossHealthPercent() {
+        FinalBoss finalBoss = new FinalBoss();
+        float percent = finalBoss.getHealthPercentage();
+        float one = 1;
+
+        assertEquals(one, percent, 0);
+    }
 }

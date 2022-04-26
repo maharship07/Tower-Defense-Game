@@ -38,3 +38,11 @@ Maharshi Patel:
     testUpgradeTowerWithMoney():
         This test checks if you can exhaust all your money initially set up and then keep on buying tower upgrades until money left is 0.
         It shows that player's money is correctly updated with ensuring that if the cost goes up of the upgrade, the test will adjust and throw failure.
+
+Terry Ma:
+
+    testBossHealth():
+        This tests whether the final boss is initialized to the right health and that it will take damage from the tower
+
+    testBossHealthPercent():
+        This test tests if the calculation for how we calculate the health percentage for the boss is correct or not. If the boss has just been initialized then it should have a health percent of 1.
