@@ -88,10 +88,10 @@ public class M6Test {
 
     @Test //M6 Test made by Vedant Amin
     public void bossDamageMonument() {
-        int monumentHealth = 500;
+        int monumentHealth = 600;
         FinalBoss finalBoss = new FinalBoss();
         int bossDamage = finalBoss.getDamage();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             monumentHealth -= bossDamage;
         }
         assertEquals(0, monumentHealth);
