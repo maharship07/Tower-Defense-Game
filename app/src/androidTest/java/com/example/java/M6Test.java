@@ -1,9 +1,15 @@
 package com.example.java;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
@@ -95,5 +101,35 @@ public class M6Test {
             monumentHealth -= bossDamage;
         }
         assertEquals(0, monumentHealth);
+    }
+
+    @Test // M6 Test made by Maharshi Patel
+    public void testMoneySpend() {
+        GameScreen gameScreen = activityRule2.getActivity();
+        Tower1 tower = new Tower1(1200, 450);
+        Upgrade upgrade = new UpgradeDamage();
+        for (int i = 0; i < 5; i++) {
+            upgrade.upgrade(tower);
+            gameScreen.setMoneySpent(gameScreen.getMoneySpent() + upgrade.getCost());
+        }
+        assertEquals(500, gameScreen.getMoneySpent());
+    }
+
+    @Test // M6 Test made by Maharshi Patel
+    public void testUpgradeTowerWithMoney() {
+        GameScreen gameScreen = activityRule2.getActivity();
+        gameScreen.setMoney(500);
+        Tower2 tower = new Tower2(1200, 450);
+        Upgrade upgrade = new UpgradeDamage();
+        while (gameScreen.getMoney() != 0) {
+            gameScreen.setMoney(gameScreen.getMoney() - upgrade.getCost());
+            upgrade.upgrade(tower);
+        }
+        if (gameScreen.getMoney() < 0) {
+            gameScreen.setMoney(0);
+            fail();
+        } else {
+            assertEquals(0, gameScreen.getMoney());
+        }
     }
 }

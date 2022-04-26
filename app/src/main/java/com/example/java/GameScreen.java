@@ -58,6 +58,10 @@ public class GameScreen extends Activity {
         return moneySpent;
     } //Testing Method
 
+    public void setMoneySpent(int moneySpent) {
+        this.moneySpent = moneySpent;
+    }
+
     public int getTotalDamageTaken() {
         return totalDamageTaken;
     } //Testing Method
