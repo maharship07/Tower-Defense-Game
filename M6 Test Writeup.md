@@ -1,5 +1,7 @@
-M6 Tests:
+M6 Tests
+
 Manu Gupta:
+
     upgradeDamageTest():
         This test checks whether upgrading a tower increases the damage as expected. Because towers should only be able to be upgraded once, this test
         also checks what happens when an upgrade is attempted on a tower twice.
@@ -9,6 +11,7 @@ Manu Gupta:
        that the tower doesn't upgrade its range again after its been doubled once already.
 
 Vedant Amin:
+
     testGameWinScreen():
         This tests checks whether the game transitions to the game_win_screen when the towers eliminates the final boss.
 
@@ -17,6 +20,7 @@ Vedant Amin:
         if the health decreases to zero.
 
 Ian Westcott:
+
     enemiesKilledTest():
         This test checks to make sure the enemies killed statistic, one of the statistics required to be displayed on game end, updates correctly.
         This is done by calling the removeDeadEnemies() method and checking whether the method correctly updates the statistic based on the number of dead enemies in the enemy array.
@@ -26,6 +30,7 @@ Ian Westcott:
         This is done by calling the attack method for each of the types of normal enemies and checking whether the total damage taken statistic equals the sum of the damage of each enemy.
 
 Maharshi Patel:
+
     testMoneySpend():
         This test will check how much money will be spent on upgrades and determine whether it sets the correct value for the total amount spent.
         It also expects to get the total amount of money spent to update properly.
